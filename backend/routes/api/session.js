@@ -21,7 +21,6 @@ const validateLogin = [
   handleValidationErrors,
 ];
 
-
 // Log out
 router.delete(
 '/',
@@ -43,7 +42,6 @@ router.get(
       } else return res.json({});
     }
   );
-
 
   router.post(
     '/',
