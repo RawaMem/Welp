@@ -9,31 +9,41 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ownerId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(100)
       },
       imgUrl: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(240)
       },
       category: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(30)
       },
       description: {
-        type: Sequelize.TEXT
+        allowNull: false,
+        type: Sequelize.TEXT(1000)
       },
       address: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(100)
       },
       city: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(30)
       },
       state: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       zipCode: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(5)
       },
       lat: {
         type: Sequelize.DECIMAL
