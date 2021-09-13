@@ -109,3 +109,18 @@ fetch('/api/users', {
     password: ''
   })
 }).then(res => res.json()).then(data => console.log(data));
+
+npx sequelize-cli model:generate --name Review --attributes userId:integer,businessId:integer,rating:integer,answer:text
+
+npx sequelize-cli model:generate --name Business --attributes ownerId:integer,title:string,imgUrl:string,category:string,description:text,address:string,city:string,state:string,zipCode:string,lat:decimal,lng:decimal
+
+npx sequelize-cli seed:generate --name addReviews
+
+npx sequelize-cli seed:generate --name addBusinesses
+
+npx dotenv sequelize db:drop
+npx dotenv sequelize db:create
+npx dotenv sequelize db:migrate
+npx dotenv sequelize db:seed:all
+npx dotenv sequelize db:seed:undo:all
+npx dotenv sequelize db:migrate:undo

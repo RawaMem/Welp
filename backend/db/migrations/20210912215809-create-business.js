@@ -27,7 +27,7 @@ module.exports = {
       },
       description: {
         allowNull: false,
-        type: Sequelize.TEXT(1000)
+        type: Sequelize.TEXT
       },
       address: {
         allowNull: false,

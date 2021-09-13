@@ -29,48 +29,59 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <>
+      <div className='top-bar'>
+
+      </div>
+      <div className='signup-page-container'>
+        <div className="left-side">
+          <form onSubmit={handleSubmit}>
+            <ul>
+              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+              <input
+                className='signup-input'
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder='Email'
+              />
+              <input
+                className='signup-input'
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                placeholder='Username'
+              />
+              <input
+                className='signup-input'
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder='Password'
+
+              />
+              <input
+                className='signup-input'
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                placeholder='Confirm Password'
+              />
+            <button type="submit" className='signup-btn'>Sign Up</button>
+          </form>
+
+        </div>
+        <div className='right-side'>
+          <img className='signup-img' src='https://s3-media0.fl.yelpcdn.com/assets/2/www/img/7922e77f338d/signup/signup_illustration.png'/>
+        </div>
+
+      </div>
+    </>
   );
 }
 
