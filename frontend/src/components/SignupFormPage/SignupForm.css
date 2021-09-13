@@ -2,6 +2,7 @@
     height: 40px;
     padding: 12px;
     background-color: rgb(211, 35, 35);
+    width: 100%;
 }
 
 .left-side {
@@ -48,6 +49,7 @@
 .signup-img {
     height: 342px;
     width: 382px;
+    margin-top: 75px;
 }
 
 .signup-input {
@@ -60,7 +62,7 @@
 
 .disabled-btn {
     box-sizing: border-box;
-    height: 41px;
+    height: 46px;
     width: 300px;
     font-size: 16px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -86,7 +88,7 @@
 
 .apple {
     background-color: black;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     border: 1px solid black);
 }
 
@@ -105,4 +107,39 @@
 .signup-legal {
     font-size: 12px;
     font-weight: 400;
+    text-align: center;
+    line-height: 18px;
+}
+
+.line {
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 280px;
+    text-align: center;
+}
+
+.or {
+    color: #666;
+    font-size: 15px;
+}
+
+.left-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-text {
+    color: #999;
+    font-size: 12px;
+    text-align: right;
+}
+
+.in-text-link {
+    color: #0073bb;
+    cursor: pointer;
+}
+.in-text-link:hover {
+    text-decoration: underline;
 }
