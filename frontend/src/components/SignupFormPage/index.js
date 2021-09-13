@@ -35,55 +35,58 @@ function SignupFormPage() {
       </div>
       <div className='signup-page-container'>
         <div className="left-side">
-          <h2 className='signup-h2'>Sign Up for Welp</h2>
-          <p className='signup-subheading'>Connect with great local businesses</p>
-          <p className='signup-legal'>By continuing, you agree to Yelp’s Terms of Service and acknowledge Yelp’s Privacy Policy.</p>
-          <button type="submit" disabled='true' className='disabled-btn facebook'>Continue with Facebook</button>
-          <button type="submit" disabled='true' className='disabled-btn google'>Continue with Google</button>
-          <button type="submit" disabled='true' className='disabled-btn apple'>Continue with Apple</button>
-          <p className='signup-legal'>Don't worry, we never post without your permission.</p>
-          <fieldset className='line'>
-            <legend className='or'>OR</legend>
-          </fieldset>
-          <form onSubmit={handleSubmit}>
-            <ul>
-              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-              <input
-                className='signup-input'
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder='Email'
-              />
-              <input
-                className='signup-input'
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                placeholder='Username'
-              />
-              <input
-                className='signup-input'
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder='Password'
+          <div className='left-container'>
+            <h2 className='signup-h2'>Sign Up for Welp</h2>
+            <p className='signup-subheading'>Connect with great local businesses</p>
+            <p className='signup-legal'>By continuing, you agree to Welp’s <a className='in-text-link'>Terms of Service</a> and acknowledge Yelp’s <a className='in-text-link'>Privacy Policy.</a></p>
+            <button type="submit" disabled='true' className='disabled-btn facebook'>Continue with Facebook</button>
+            <button type="submit" disabled='true' className='disabled-btn google'>Continue with Google</button>
+            <button type="submit" disabled='true' className='disabled-btn apple'>Continue with Apple</button>
+            <p className='signup-legal'>Don't worry, we never post without your permission.</p>
+            <fieldset className='line'>
+              <legend className='or'>OR</legend>
+            </fieldset>
+            <form onSubmit={handleSubmit}>
+              <ul>
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+              </ul>
+                <input
+                  className='signup-input'
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder='Email'
+                />
+                <input
+                  className='signup-input'
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  placeholder='Username'
+                />
+                <input
+                  className='signup-input'
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder='Password'
 
-              />
-              <input
-                className='signup-input'
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                placeholder='Confirm Password'
-              />
-            <button type="submit" className='signup-btn'>Sign Up</button>
-          </form>
+                />
+                <input
+                  className='signup-input'
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  placeholder='Confirm Password'
+                />
+              <button type="submit" className='signup-btn'>Sign Up</button>
+              <p className='bottom-text'>Already on Welp? <a className='in-text-link'>Log in</a></p>
+            </form>
+          </div>
 
         </div>
         <div className='right-side'>
