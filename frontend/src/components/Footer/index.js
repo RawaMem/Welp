@@ -4,56 +4,56 @@ import { useHistory } from 'react-router-dom';
 import './Footer.css';
 
 
-const Footer = () => {
+export const Footer = () => {
     return(
         <div className="footer-container">
             <div className="top-footer">
                 <div className="column-container">
                     <h3 className='footer-titles'>About</h3>
-                    <ul>
-                        <li>About Yelp</li>
-                        <li>Careers</li>
-                        <li>Press</li>
-                        <li>Investor Relations</li>
-                        <li>Trust and Safety</li>
-                        <li>Content Guidelines</li>
-                        <li>Accessibility Statement</li>
-                        <li>Terms of Service</li>
-                        <li>Privacy Policy</li>
-                        <li>Ad Choices</li>
-                    </ul>
+                    <div className='ul-style'>
+                        <p>About Yelp</p>
+                        <p>Careers</p>
+                        <p>Press</p>
+                        <p>Investor Relations</p>
+                        <p>Trust and Safety</p>
+                        <p>Content Guidelines</p>
+                        <p>Accessibility Statement</p>
+                        <p>Terms of Service</p>
+                        <p>Privacy Policy</p>
+                        <p>Ad Choices</p>
+                    </div>
 
                 </div>
                 <div className="column-container">
                     <h3 className='footer-titles'>Discover</h3>
-                    <ul>
-                        <li>Yelp Project Cost Guides</li>
-                        <li>Collections</li>
-                        <li>Talk</li>
-                        <li>Events</li>
-                        <li>The Local Yelp</li>
-                        <li>Yelp Blog</li>
-                        <li>Support</li>
-                        <li>Yelp Mobile</li>
-                        <li>Developers</li>
-                        <li>RSS</li>
-                    </ul>
+                    <div className='ul-style'>
+                        <p>Yelp Project Cost Guides</p>
+                        <p>Collections</p>
+                        <p>Talk</p>
+                        <p>Events</p>
+                        <p>The Local Yelp</p>
+                        <p>Yelp Blog</p>
+                        <p>Support</p>
+                        <p>Yelp Mobile</p>
+                        <p>Developers</p>
+                        <p>RSS</p>
+                    </div>
 
                 </div>
-                <div className="column-container">
-                    <h3 >Yelp for Business</h3>
-                    <ul>
-                        <li>Claim your Business Page</li>
-                        <li>Advertise on Yelp</li>
-                        <li>Yelp for Restaurant Owners</li>
-                        <li>Table Management</li>
-                        <li>Business Success Stories</li>
-                        <li>Business Support</li>
-                        <li>Yelp Blog for Business</li>
-                    </ul>
+                <div className="column-container higher">
+                    <h3 className='footer-titles'>Yelp for Business</h3>
+                    <div className='ul-style'>
+                        <p className='lineheight'>Claim your Business Page</p>
+                        <p>Advertise on Yelp</p>
+                        <p>Yelp for Restaurant Owners</p>
+                        <p>Table Management</p>
+                        <p>Business Success Stories</p>
+                        <p>Business Support</p>
+                        <p>Yelp Blog for Business</p>
+                    </div>
 
                 </div>
-                <div className="column-container">
+                <div className="column-container higher">
                     <h3 className='footer-titles'>Languages</h3>
 
                     <p>English</p>
