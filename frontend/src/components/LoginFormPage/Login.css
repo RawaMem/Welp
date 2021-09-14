@@ -1,0 +1,145 @@
+.top-bar {
+    height: 40px;
+    padding: 12px;
+    background-color: rgb(211, 35, 35);
+    width: 100%;
+}
+
+.left-side {
+    height: 660px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 750px;
+    width: 495px;
+
+}
+
+.right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 501px;
+    width: 495px;
+}
+
+.signup-btn {
+    box-sizing: border-box;
+    height: 41px;
+    width: 300px;
+    background-color: rgb(211, 35, 35);
+    border: 1px solid rgb(211, 35, 35);
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.signup-page-container {
+    display: flex;
+    justify-content: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+}
+
+.signup-img {
+    height: 342px;
+    width: 382px;
+    margin-top: 75px;
+}
+
+.signup-input {
+    height: 30px;
+    width: 300px;
+    padding: 5px 9px;
+    margin-bottom: 9px;
+
+}
+
+.disabled-btn {
+    box-sizing: border-box;
+    height: 46px;
+    width: 300px;
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    border-radius: 3px;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+
+.facebook {
+    background-color: rgb(24, 119, 242);
+    margin-bottom: 10px;
+    border: 1px solid rgb(24, 119, 242);
+}
+
+.google {
+    background-color: white;
+    color: rgb(102, 102, 102);
+    border: 1px solid rgb(204, 204, 204);
+    margin-bottom: 10px;
+}
+
+.apple {
+    background-color: black;
+    margin-bottom: 25px;
+    border: 1px solid black);
+}
+
+.signup-h2 {
+    color: rgb(211, 35, 35);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 17.99px;
+}
+
+.signup-subheading {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.signup-legal {
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 18px;
+}
+
+.line {
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 280px;
+    text-align: center;
+}
+
+.or {
+    color: #666;
+    font-size: 15px;
+}
+
+.left-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-text {
+    color: #999;
+    font-size: 12px;
+    text-align: right;
+}
+
+.in-text-link {
+    color: #0073bb;
+    cursor: pointer;
+}
+.in-text-link:hover {
+    text-decoration: underline;
+}
