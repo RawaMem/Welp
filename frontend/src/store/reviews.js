@@ -12,29 +12,29 @@ const getReviews = id => ({
     id
 });
 
-const userReviews = id => ({
-    type: USER_REVIEW_FOR_BUSINESS,
-    id
-});
+// const userReview = id => ({
+//     type: USER_REVIEW_FOR_BUSINESS,
+//     id
+// });
 
-const addReview = reviewDetails => ({
-    type: ADD_REVIEW,
-    reviewDetails
+// const addReview = reviewDetails => ({
+//     type: ADD_REVIEW,
+//     reviewDetails
 
-});
+// });
 
-const editReview = reviewDetails => ({
-    type: EDIT_REVIEW,
-    reviewDetails
-});
+// const editReview = reviewDetails => ({
+//     type: EDIT_REVIEW,
+//     reviewDetails
+// });
 
-const deleteReview = id => ({
-    type: DELETE_REVIEW,
-    id
-});
+// const deleteReview = id => ({
+//     type: DELETE_REVIEW,
+//     id
+// });
 
 
-const allReviewsForBusiness = (business) => async dispatch => {
+export const allReviewsForBusiness = (business) => async dispatch => {
     const response = await fetch(`api/business/${business.id}/reviews`);
 
     if (response.ok) {
@@ -43,11 +43,12 @@ const allReviewsForBusiness = (business) => async dispatch => {
     }
 };
 
-const userReviewsForBusiness = (id) => async dispatch => {
-    const response = await fetch(``);
+// export const userReviewForBusiness = (id) => async dispatch => {
+//     const response = await fetch(``);
 
-    if (response.ok) {
-        const user
+//     if (response.ok) {
+//         const userReviewList = await response.json();
+//         dispatch(userReview())
 
-    }
-}
+//     }
+// }
