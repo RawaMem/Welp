@@ -2,4 +2,30 @@
     background-color: rgb(244, 244, 244);
     width: 100%;
     height: 500 px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: rgb(117, 114, 128);
+}
+
+.top-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-titles {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    color: black;
 }
