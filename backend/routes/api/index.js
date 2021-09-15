@@ -16,15 +16,16 @@ router.use('/businesses', businessRouter);
 router.use('./search', searchRouter);
 
 
-// router.post('/test', function(req, res) {
-//     res.json({ requestBody: req.body });
-//   });
 
 
 
 
 
 module.exports = router;
+
+// router.post('/test', function(req, res) {
+//     res.json({ requestBody: req.body });
+//   });
 
   //test routes
   // router.get('/set-token-cookie', asyncHandler(async (req, res) => {
