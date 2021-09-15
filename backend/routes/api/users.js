@@ -99,7 +99,7 @@ router.patch('/:userId(\\d+)/businesses/:businessId(\\d+)/reviews/:reviewId(\\d+
 
 //user deltes their own review
 router.delete('/:userId(\\d+)/businesses/:businessId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async function(req, res) {
-  const { reviewId } = req.params
+  const reviewId = parseint(req.params.reviewId, 10)
 
 
   const review = await Review.findByPk(reviewId);
