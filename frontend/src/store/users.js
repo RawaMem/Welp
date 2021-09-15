@@ -11,7 +11,6 @@ const userReview = userReviewDetails => ({
 const addReview = newReviewDetails => ({
     type: ADD_REVIEW,
     newReviewDetails
-
 });
 
 const editReview = newReviewDetails => ({
@@ -75,38 +74,53 @@ export const deleteUserReview = (reviewId, userId, businessId) => async dispatch
     }
 }
 
-const initialState = {};
+const initialState = {users: {}, businesses: {}, reviews: {}};
 
-cosnt userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_REVIEW_FOR_BUSINESS: {
-            const newUserReviewForBusiness = {};
-            return newUserReviewForBusiness[action.userReviewDetails.id] = { userReviewDetails}
+            // const newUserReviewForBusiness = {};
+            // return newUserReviewForBusiness[action.userReviewDetails.id] = action.userReviewDetails
+            //might not need this route because we can just access user review thats already in the state
+            //let userReview;
+            // for (let key in state.reviews) {
+            //      if (state.reviews.key.userId === userId && state.reviews.key.businessId === businessId) {
+            //          userReview = state.reviews.key
+            //return userReview
+            //
+            //
+            // import useParams and get userId and businessId and use above
+
+            const newState = {...state};
+            return newState
         }
         case ADD_REVIEW: {
-            const newReviewState = {
-                ...state,
-                [action.newReviewDetails.id]: action.newReviewDetails
-            }
-            return newReviewState
+            const newReviewObj = {...state.reviews};
+            newReviewObj[action.newReviewDetails.id]= action.newReviewDetails
+            const newState = {...state}
+            newState.reviews = newReviewObj;
+            return newState
         }
-
         case EDIT_REVIEW: {
-            const newReviewState = {
-                ...state,
-                [action.newReviewDetails.id]: action.newReviewDetails
+            const newReviewObj = {...state.reviews};
+            newReviewObj[action.newReviewDetails.id]= action.newReviewDetails
+            const newState = {...state}
+            newState.reviews = newReviewObj;
+            return newState
             }
-            return newReviewState
-            }
-
-
         case DELETE_REVIEW: {
-            const newReviewState = {
-
+            const workObj = {...state.reviews}
+            const newReviewObj = {};
+            for (let key in workObj) {
+                if (key !== action.reviewId) {
+                    newReviewObj[key] = workObj[key]
+                }
             }
+            const newState = {...state}
+            newState.reviews = newReviewObj;
+            return newState
         }
-
-        
-
+        default:
+            return state
     }
 }

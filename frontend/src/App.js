@@ -14,7 +14,8 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-
+//just make a different navbar composnent for each url if needed to keep it simple
+//if path === specific url, render nav bar one way, else render a different way
   return (
     <>
       <Navigation isLoaded={isLoaded} />
