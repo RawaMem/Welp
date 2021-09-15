@@ -19,14 +19,14 @@ const editReview = newReviewDetails => ({
     newReviewDetails
 });
 
-const deleteReview = id => ({
+const deleteReview = reviewId => ({
     type: DELETE_REVIEW,
-    id
+    reviewId
 });
 
 
 //get user's review for a business
-export const userReviewForBusiness = (id) => async dispatch => {
+export const userReviewForBusiness = (userId, businessId) => async dispatch => {
     const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews`);
 
     if (response.ok) {
@@ -37,7 +37,7 @@ export const userReviewForBusiness = (id) => async dispatch => {
 };
 
 //add user review to a business
-export const addUserReview = (reviewDetails) => async dispatch => {
+export const addUserReview = (reviewDetails, userId, businessId) => async dispatch => {
     const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews`, {
         method: 'POST',
         headers: 'application/json',
@@ -50,7 +50,7 @@ export const addUserReview = (reviewDetails) => async dispatch => {
 }
 
 //edit users review
-export const editUserReview = (reviewDetails) => async dispatch => {
+export const editUserReview = (reviewDetails, userId, businessId) => async dispatch => {
     const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews/${reviewId}`, {
         method: 'PATCH',
         headers: 'application/json',
@@ -63,14 +63,50 @@ export const editUserReview = (reviewDetails) => async dispatch => {
 }
 
 //delete users review
-export const deleteUserReview = (reviewDetails) => async dispatch => {
+export const deleteUserReview = (reviewId, userId, businessId) => async dispatch => {
     const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews/${reviewId}`, {
         method: 'DELETE',
         headers: 'application/json',
-        body: JSON.stringify(reviewDetails)
+        body: JSON.stringify(reviewId)
     });
     if (response.ok) {
         const reviewId = await response.json();
         dispatch(deleteReview(reviewId))
+    }
+}
+
+const initialState = {};
+
+cosnt userReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case USER_REVIEW_FOR_BUSINESS: {
+            const newUserReviewForBusiness = {};
+            return newUserReviewForBusiness[action.userReviewDetails.id] = { userReviewDetails}
+        }
+        case ADD_REVIEW: {
+            const newReviewState = {
+                ...state,
+                [action.newReviewDetails.id]: action.newReviewDetails
+            }
+            return newReviewState
+        }
+
+        case EDIT_REVIEW: {
+            const newReviewState = {
+                ...state,
+                [action.newReviewDetails.id]: action.newReviewDetails
+            }
+            return newReviewState
+            }
+
+
+        case DELETE_REVIEW: {
+            const newReviewState = {
+
+            }
+        }
+
+        
+
     }
 }

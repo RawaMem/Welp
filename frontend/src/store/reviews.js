@@ -34,6 +34,7 @@ const getReviews = id => ({
 // });
 
 
+//get all review for a business
 export const allReviewsForBusiness = (business) => async dispatch => {
     const response = await fetch(`api/business/${business.id}/reviews`);
 
