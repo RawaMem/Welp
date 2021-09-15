@@ -24,12 +24,29 @@ router.get('/:businessId(\\d+)', asyncHandler(async function(req, res) {
 
 
 
-
+//create a business
 router.post('/', asyncHandler(async function(req, res) {
-    const businesses = await Business.findAll();
-    return res.json(businesses);
+    const newlyCreatedBusiness = await Business.create(req.body);
+    return res.redirect(`api/businesses/${newlyCreatedBusiness.id}`)
 }));
 
+
+//edit a business
+router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
+    const updatedBusiness = await Business.update(req.body);
+    return res.redirect(`api/businesses/${updatedBusiness.id}`)
+}));
+
+//delete a business
+router.delete('/:businessId(\\d+)', asyncHandler(async function(req, res) {
+    const id = parseInt(req.params.id, 10);
+    await Business.destroy({
+        where: {
+            id 
+        }
+    });
+    return res.redirect(`api/businesses`)
+}));
 
 
 

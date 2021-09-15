@@ -26,9 +26,9 @@ const addBusinesses = details => ({
     details
 });
 
-const deleteBusinesses = details => ({
+const destroyBusiness = id => ({
     type: DELETE_BUSINESS,
-    details
+    id
 });
 
 export  const listOfAllBusinesses = () => async dispatch => {
@@ -41,7 +41,7 @@ export  const listOfAllBusinesses = () => async dispatch => {
 };
 
 export const getOneBusiness = (business) => async dispatch => {
-    const response = await csrfFetch(`api/businesses/${business.id}`);
+    const response = await csrfFetch(`/api/businesses/${business.id}`);
 
     if (response.ok) {
         const details = await response.json();
@@ -50,9 +50,43 @@ export const getOneBusiness = (business) => async dispatch => {
 };
 
 
+export const createBusiness = (businessDetails) => async dispatch => {
+    const response = await csrfFetch('/api/businesses', {
+      method: 'POST',
+      body: JSON.stringify(businessDetails)
+    })
+    if(response.ok){
+      const newBusiness = await response.json()
+      dispatch(addBusinesses(newBusiness))
+      return newBusiness;
+    }
+};
 
 
+export const editBusinessDetails = (businessDetails, businessId) => async dispatch => {
+    const response = await csrfFetch(`/api/businesses/${businessId}`, {
+      method: 'PUT',
+      body: JSON.stringify(businessDetails)
+    })
+    if(response.ok){
+      const updatedBusiness = await response.json()
+      dispatch(editBusinesses(updatedBusiness))
+      return updatedBusiness;
+    }
+};
 
+export const deleteBusiness = (businessId) => async dispatch => {
+    const response = await csrfFetch(`/api/businesses/${businessId}`, {
+      method: 'DELETE',
+      body: JSON.stringify(businessId)
+
+    })
+    if(response.ok){
+      const updatedBusiness = await response.json()
+      dispatch(destroyBusiness(updatedBusiness))
+      return updatedBusiness;
+    }
+};
 
 
 
@@ -60,20 +94,50 @@ export const getOneBusiness = (business) => async dispatch => {
 const initialState = {list: []};
 
 const businessReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
         case GET_ALL_BUSINESSES: {
             const allBusinesses = action.list
-
-            return {
-                ...state,
+            newState = {
                 list: allBusinesses
             }
+            return newState
+        }
+        case EDIT_BUSINESS: {
+            newState = {...state};
+            let newBusinessList = newState.list.map(business => {
+                if (business.id === action.details.id) {
+                    return action.detail;
+                } else {
+                    return business;
+                }
+            });
+            newState = {
+                list: newBusinessList
+            }
+            return newState
+        }
+        case ADD_BUSINESS: {
+            newState = {...state};
+            newState.list.push(action.details)
+            return newState;
         }
 
+        case DELETE_BUSINESS: {
+            newState = {...state};
+            let newBusinessList = newState.list.map(business => {
+                if (business.id !== action.details.id) {
+                    return business;
+                }
+            });
+            newState = {
+                list: newBusinessList
+            }
+            return newState
+        }
         default:
             return state
     }
-
 }
 
 export default businessReducer;
