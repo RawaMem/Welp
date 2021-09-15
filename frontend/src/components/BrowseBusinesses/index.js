@@ -9,20 +9,14 @@ export const BrowseBusinesses = () => {
 
 const dispatch = useDispatch();
 const listOfBusinesses = useSelector(state => {
-    console.log(`==========>`,state);
     return state.businesses.list
 
 
 
 })
 
-
-
-console.log(`============>`, listOfBusinesses);
-
 useEffect(() => {
     dispatch(listOfAllBusinesses())
-    console.log(`-=======> useEffect running`);
 }, [dispatch])
 
     return(
@@ -55,7 +49,7 @@ useEffect(() => {
                     {listOfBusinesses.map(business => {
                         return (
                             <div className="business-card">
-                                <div className="b-img">{business.imgUrl}</div>
+                                <img className="b-img" src={business.imgUrl} alt='business'/>
                                 <div className="b-title">{business.title}</div>
                                 <div className="b-description">{business.description}</div>
                                 <div className="b-location">{`${business.city}, ${business.state}`}</div>

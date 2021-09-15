@@ -12,7 +12,6 @@ const router = express.Router();
 //get all businesses
 router.get('/', asyncHandler(async function(req, res) {
     const businesses = await Business.findAll();
-    console.log(`=========>`, businesses)
     return res.json(businesses);
 }));
 
@@ -22,6 +21,17 @@ router.get('/:businessId(\\d+)', asyncHandler(async function(req, res) {
     const business = await Business.findByPk(businessId)
     return res.json(business)
 }));
+
+
+
+
+router.post('/', asyncHandler(async function(req, res) {
+    const businesses = await Business.findAll();
+    return res.json(businesses);
+}));
+
+
+
 
 //get all reviews for a business
 router.get('/:businessId(\\d+)/reviews', asyncHandler(async function(req, res) {
@@ -33,15 +43,6 @@ router.get('/:businessId(\\d+)/reviews', asyncHandler(async function(req, res) {
     })
     return res.json(reviews)
 }));
-
-
-
-
-
-
-
-
-
 
 
 

@@ -76,7 +76,7 @@ export const deleteUserReview = (reviewId, userId, businessId) => async dispatch
     }
 }
 
-const initialState = {reviews: {}};
+const initialState = {reviews: []};
 
 const userReviewReducer = (state = initialState, action) => {
     let newState;

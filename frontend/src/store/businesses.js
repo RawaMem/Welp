@@ -1,6 +1,9 @@
 import { csrfFetch } from "./csrf";
 const GET_ALL_BUSINESSES = 'businesses/getAllBusinesses';
 const GET_ONE_BUSINESS = 'businesses/getOneBusiness';
+const EDIT_BUSINESS = `businesses/editBusiness`;
+const ADD_BUSINESS = `businesses/addBusiness`;
+const DELETE_BUSINESS = `businesses/deleteBusiness`
 
 
 const getAllBusinesses = list => ({
@@ -11,16 +14,28 @@ const getAllBusinesses = list => ({
 const oneBusinessDetails = details => ({
     type: GET_ONE_BUSINESS,
     details
-})
+});
 
+const editBusinesses = details => ({
+    type: EDIT_BUSINESS,
+    details
+});
+
+const addBusinesses = details => ({
+    type: ADD_BUSINESS,
+    details
+});
+
+const deleteBusinesses = details => ({
+    type: DELETE_BUSINESS,
+    details
+});
 
 export  const listOfAllBusinesses = () => async dispatch => {
     const response = await csrfFetch(`/api/businesses`);
-    console.log(`===========>`, response);
 
     if (response.ok) {
         const list = await response.json();
-        console.log(`===========>`, list);
         dispatch(getAllBusinesses(list));
     }
 };
@@ -34,15 +49,25 @@ export const getOneBusiness = (business) => async dispatch => {
     }
 };
 
-const initialState = {list: null};
+
+
+
+
+
+
+
+
+const initialState = {list: []};
 
 const businessReducer = (state = initialState, action) => {
-    let newState;
     switch (action.type) {
         case GET_ALL_BUSINESSES: {
             const allBusinesses = action.list
-            newState.list = allBusinesses
-            return newState
+
+            return {
+                ...state,
+                list: allBusinesses
+            }
         }
 
         default:
