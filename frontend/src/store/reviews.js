@@ -1,4 +1,4 @@
-const { response } = require("../../../backend/app");
+import { csrfFetch } from "./csrf";
 
 const REVIEWS_FOR_BUSINESS = `reviews/getReviewsForOneBusiness`;
 const USER_REVIEW_FOR_BUSINESS = `reviews/getUserReviewForBusiness`;
@@ -36,7 +36,7 @@ const getReviews = id => ({
 
 //get all review for a business
 export const allReviewsForBusiness = (business) => async dispatch => {
-    const response = await fetch(`api/business/${business.id}/reviews`);
+    const response = await csrfFetch(`api/business/${business.id}/reviews`);
 
     if (response.ok) {
         const reviewList = await response.json();

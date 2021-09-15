@@ -12,6 +12,7 @@ const router = express.Router();
 //get all businesses
 router.get('/', asyncHandler(async function(req, res) {
     const businesses = await Business.findAll();
+    console.log(`=========>`, businesses)
     return res.json(businesses);
 }));
 

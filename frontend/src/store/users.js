@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 const USER_REVIEW_FOR_BUSINESS = `reviews/getUserReviewForBusiness`;
 const ADD_REVIEW = `reviews/addReview`;
 const EDIT_REVIEW = `reviews/editReview`;
@@ -26,7 +28,7 @@ const deleteReview = reviewId => ({
 
 //get user's review for a business
 export const userReviewForBusiness = (userId, businessId) => async dispatch => {
-    const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews`);
+    const response = await csrfFetch(`api/users/${userId}/businesses/${businessId}/reviews`);
 
     if (response.ok) {
         const userReviewDetails = await response.json();
@@ -37,20 +39,20 @@ export const userReviewForBusiness = (userId, businessId) => async dispatch => {
 
 //add user review to a business
 export const addUserReview = (reviewDetails, userId, businessId) => async dispatch => {
-    const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews`, {
+    const response = await csrfFetch(`api/users/${userId}/businesses/${businessId}/reviews`, {
         method: 'POST',
-        headers: 'application/json',
         body: JSON.stringify(reviewDetails)
     });
     if (response.ok) {
         const newReviewDetails = await response.json();
-        dispatch(addReview(newReviewDetails))
+        dispatch(addReview(newReviewDetails)) //dispatching to state
+        return newReviewDetails //returning to component for use if needed
     }
 }
 
 //edit users review
-export const editUserReview = (reviewDetails, userId, businessId) => async dispatch => {
-    const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews/${reviewId}`, {
+export const editUserReview = (reviewDetails, userId, businessId, reviewId) => async dispatch => {
+    const response = await csrfFetch(`api/users/${userId}/businesses/${businessId}/reviews/${reviewId}`, {
         method: 'PATCH',
         headers: 'application/json',
         body: JSON.stringify(reviewDetails)
@@ -63,7 +65,7 @@ export const editUserReview = (reviewDetails, userId, businessId) => async dispa
 
 //delete users review
 export const deleteUserReview = (reviewId, userId, businessId) => async dispatch => {
-    const response = await fetch(`api/users/${userId}/businesses/${businessId}/reviews/${reviewId}`, {
+    const response = await csrfFetch(`api/users/${userId}/businesses/${businessId}/reviews/${reviewId}`, {
         method: 'DELETE',
         headers: 'application/json',
         body: JSON.stringify(reviewId)
@@ -74,9 +76,10 @@ export const deleteUserReview = (reviewId, userId, businessId) => async dispatch
     }
 }
 
-const initialState = {users: {}, businesses: {}, reviews: {}};
+const initialState = {reviews: {}};
 
-const userReducer = (state = initialState, action) => {
+const userReviewReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
         case USER_REVIEW_FOR_BUSINESS: {
             // const newUserReviewForBusiness = {};
@@ -88,23 +91,23 @@ const userReducer = (state = initialState, action) => {
             //          userReview = state.reviews.key
             //return userReview
             //
-            //
+            //use .find in the component
             // import useParams and get userId and businessId and use above
 
-            const newState = {...state};
+            newState = {...state};
             return newState
         }
         case ADD_REVIEW: {
             const newReviewObj = {...state.reviews};
             newReviewObj[action.newReviewDetails.id]= action.newReviewDetails
-            const newState = {...state}
+            newState = {...state}
             newState.reviews = newReviewObj;
             return newState
         }
         case EDIT_REVIEW: {
             const newReviewObj = {...state.reviews};
             newReviewObj[action.newReviewDetails.id]= action.newReviewDetails
-            const newState = {...state}
+            newState = {...state}
             newState.reviews = newReviewObj;
             return newState
             }
@@ -116,7 +119,7 @@ const userReducer = (state = initialState, action) => {
                     newReviewObj[key] = workObj[key]
                 }
             }
-            const newState = {...state}
+            newState = {...state}
             newState.reviews = newReviewObj;
             return newState
         }
@@ -124,3 +127,5 @@ const userReducer = (state = initialState, action) => {
             return state
     }
 }
+
+export default userReviewReducer;
