@@ -1,29 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, NavLink, Route, useParams, Link } from 'react-router-dom';
-import { listOfAllBusinesses } from '../../store/businesses';
+import { getOneBusiness } from '../../store/businesses';
 
 
 export const BusinessPage = () => {
 
     const dispatch = useDispatch();
-    const listOfBusinesses = useSelector(state => {
-        return state.businesses.list
+    const currentBusiness = useSelector(state => {
+        return state.businesses.currentBusiness
     });
 
-    const {businessId} = useParams();
-    const currentBusiness = listOfBusinesses.filter(business => {
-        if (business.id === businessId) {
-            return business
-        }
+    const userId = useSelector(state => {
+        return state.session.user.id
     });
+
+    console.log(`==========>Session`, session);
+
+    const {businessId} = useParams();
 
 
     useEffect(() => {
-        dispatch(listOfAllBusinesses())
-    }, [dispatch, listOfBusinesses]);
+        dispatch(getOneBusiness(businessId))
+    }, [dispatch]);
 
-    console.log(`==========>`, listOfBusinesses);
+
     return(
         <>
         <div className="page-container">

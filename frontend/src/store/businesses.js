@@ -40,8 +40,8 @@ export  const listOfAllBusinesses = () => async dispatch => {
     }
 };
 
-export const getOneBusiness = (business) => async dispatch => {
-    const response = await csrfFetch(`/api/businesses/${business.id}`);
+export const getOneBusiness = (businessId) => async dispatch => {
+    const response = await csrfFetch(`/api/businesses/${businessId}`);
 
     if (response.ok) {
         const details = await response.json();
@@ -89,7 +89,7 @@ export const deleteBusiness = (businessId) => async dispatch => {
 };
 
 
-const initialState = {list: []};
+const initialState = {list: [], currentBusiness: []};
 
 const businessReducer = (state = initialState, action) => {
     let newState;
@@ -98,7 +98,13 @@ const businessReducer = (state = initialState, action) => {
             const allBusinesses = action.list
             newState = {
                 list: allBusinesses,
+                currentBusiness: []
             }
+            return newState
+        }
+        case GET_ONE_BUSINESS: {
+            newState = {...state}
+            newState.currentBusiness = action.details
             return newState
         }
         case EDIT_BUSINESS: {
@@ -127,6 +133,7 @@ const businessReducer = (state = initialState, action) => {
                 if (business.id !== action.details.id) {
                     return business;
                 }
+                return null;
             });
             newState = {
                 list: newBusinessList
