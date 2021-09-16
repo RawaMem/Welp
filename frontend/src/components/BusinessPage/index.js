@@ -6,7 +6,6 @@ import { BrowseBusinesses } from '../BrowseBusinesses';
 
 
 export const BusinessPage = () => {
-
     const dispatch = useDispatch();
     const {businessId} = useParams();
     const history = useHistory();
@@ -16,6 +15,7 @@ export const BusinessPage = () => {
     const AllBusiness = useSelector(state => {
         return state.businesses.list
     });
+
     const currentBusiness = AllBusiness.find(business => {
         return +businessId === business.id
     })
@@ -28,6 +28,20 @@ export const BusinessPage = () => {
     useEffect(() => {
         dispatch(listOfAllBusinesses())
     }, [dispatch]);
+
+
+    const reviewList = useSelector(state => {
+        return state.reviews.list
+    })
+
+    const userReview = reviewList.filter(review => {
+        if (review.userId === userId && review.businessId === businessId) {
+            return review;
+        }
+    })
+
+
+
 
     // useEffect(() => {
     //     dispatch(getOneBusiness(businessId))
