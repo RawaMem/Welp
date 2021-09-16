@@ -59,7 +59,7 @@ export const AddBusinessForm = () => {
 
 
     return (
-        <section className="new-form-holder centered middled">
+        <section className="form">
           <form onSubmit={handleSubmit}>
             <input
               type="hidden"
