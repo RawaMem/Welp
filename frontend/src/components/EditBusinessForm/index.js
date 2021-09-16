@@ -10,6 +10,7 @@ export const EditBusinessFrom = () => {
     const currentBusiness = useSelector(state => {
         return state.businesses.currentBusiness
     });
+    console.log(currentBusiness)
 
     const userId = useSelector(state => {
         return state.session.user.id

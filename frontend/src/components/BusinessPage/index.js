@@ -1,45 +1,60 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
-import { deleteBusiness, getOneBusiness } from '../../store/businesses';
+import { useParams, Link, useHistory } from 'react-router-dom';
+import { deleteBusiness, getOneBusiness, listOfAllBusinesses } from '../../store/businesses';
+import { BrowseBusinesses } from '../BrowseBusinesses';
 
 
 export const BusinessPage = () => {
 
     const dispatch = useDispatch();
     const {businessId} = useParams();
-    const [deleteId, setDeleteId] = useState(businessId)
+    const history = useHistory();
 
-    const currentBusiness = useSelector(state => {
-        return state.businesses.currentBusiness
+    // const [deleteId, setDeleteId] = useState(businessId)
+
+    const AllBusiness = useSelector(state => {
+        return state.businesses.list
     });
+    const currentBusiness = AllBusiness.find(business => {
+        return +businessId === business.id
+    })
+    console.log('=======>', currentBusiness)
 
     const userId = useSelector(state => {
         return state.session.user.id
     });
 
-
-
     useEffect(() => {
-        dispatch(getOneBusiness(businessId))
-    }, [dispatch, businessId, currentBusiness]);
+        dispatch(listOfAllBusinesses())
+    }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(deleteBusiness(deleteId))
-    }, [deleteId, dispatch])
+    // useEffect(() => {
+    //     dispatch(getOneBusiness(businessId))
+    // }, [dispatch, businessId, currentBusiness]);
+
+    // useEffect(() => {
+    //     dispatch(deleteBusiness(deleteId))
+    // }, [deleteId, dispatch])
 
     console.log('=================>', currentBusiness);
 
-    const deleteThisBusiness = () => setDeleteId(businessId);
+    const deleteThisBusiness = (e) => {
+        // e.preventDefault();
+        dispatch(deleteThisBusiness(businessId));
+        // if (deleted) {
+        //     history.push(`/`);
+        //   }
+    }
 
     return(
         <>
             <div className="page-container">
                 <div className="business-card">
-                    <img className="b-img" src={currentBusiness.imgUrl} alt='currentBusiness'/>
-                    <div className="b-title">{currentBusiness.title}</div>
-                    <div className="b-description">{currentBusiness.description}</div>
-                    <div className="b-location">{`${currentBusiness.city}, ${currentBusiness.state}`}</div>
+                    <img className="b-img" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
+                    <div className="b-title">{currentBusiness?.title}</div>
+                    <div className="b-description">{currentBusiness?.description}</div>
+                    <div className="b-location">{`${currentBusiness?.city}, ${currentBusiness?.state}`}</div>
                 </div>
             </div>
 

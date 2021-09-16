@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 const GET_ALL_BUSINESSES = 'businesses/getAllBusinesses';
-const GET_ONE_BUSINESS = 'businesses/getOneBusiness';
+const GET_ONE_BUSINESS = '/businesses/getOneBusiness';
 const EDIT_BUSINESS = `businesses/editBusiness`;
 const ADD_BUSINESS = `businesses/addBusiness`;
 const DELETE_BUSINESS = `businesses/deleteBusiness`
@@ -105,6 +105,7 @@ const businessReducer = (state = initialState, action) => {
         case GET_ONE_BUSINESS: {
             newState = {...state}
             newState.currentBusiness = action.details
+            console.log('=========>', newState);
             return newState
         }
         case EDIT_BUSINESS: {

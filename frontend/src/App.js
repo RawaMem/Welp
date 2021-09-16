@@ -36,10 +36,10 @@ function App() {
           <Route exact path="/businesses">
             <BrowseBusinesses />
           </Route>
-          <Route exact path="/businesses/:businessId(//d+)">
+          <Route exact path="/businesses/:businessId">
             <BusinessPage />
           </Route>
-          <Route exact path="/businesses/:businessId(//d+)/edit">
+          <Route exact path="/businesses/:businessId/edit">
             <EditBusinessFrom />
           </Route>
           <Route exact path="/businesses/new">
@@ -50,5 +50,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
