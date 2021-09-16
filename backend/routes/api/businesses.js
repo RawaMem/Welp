@@ -22,6 +22,34 @@ router.get('/:businessId(\\d+)', asyncHandler(async function(req, res) {
     return res.json(business)
 }));
 
+
+
+//create a business
+router.post('/', asyncHandler(async function(req, res) {
+    const newlyCreatedBusiness = await Business.create(req.body);
+    return res.redirect(`api/businesses/${newlyCreatedBusiness.id}`)
+}));
+
+
+//edit a business
+router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
+    const updatedBusiness = await Business.update(req.body);
+    return res.redirect(`api/businesses/${updatedBusiness.id}`)
+}));
+
+//delete a business
+router.delete('/:businessId(\\d+)', asyncHandler(async function(req, res) {
+    const id = parseInt(req.params.id, 10);
+    await Business.destroy({
+        where: {
+            id 
+        }
+    });
+    return res.redirect(`api/businesses`)
+}));
+
+
+
 //get all reviews for a business
 router.get('/:businessId(\\d+)/reviews', asyncHandler(async function(req, res) {
     const businessId = req.params.businessId
@@ -32,15 +60,6 @@ router.get('/:businessId(\\d+)/reviews', asyncHandler(async function(req, res) {
     })
     return res.json(reviews)
 }));
-
-
-
-
-
-
-
-
-
 
 
 
