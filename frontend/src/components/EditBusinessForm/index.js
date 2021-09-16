@@ -1,26 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { createBusiness } from '../../store/businesses';
+import { useHistory, useParams } from 'react-router-dom';
+import { editBusinessDetails, getOneBusiness } from '../../store/businesses';
 
-
-export const AddBusinessForm = () => {
+export const EditBusinessFrom = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const currentBusiness = useSelector(state => {
+        return state.businesses.currentBusiness
+    });
 
     const userId = useSelector(state => {
         return state.session.user.id
     });
 
+    const {businessId} = useParams();
+
+    useEffect(() => {
+        dispatch(getOneBusiness(businessId))
+    }, [dispatch, businessId]);
+
     const [ownerId, setOwnerId] = useState(userId);
-    const [title, setTitle] = useState('');
-    const [imgUrl, setImgUrl] = useState('');
-    const [category, setCategory] = useState('');
-    const [description, setDescription] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [zipCode, setZipCode] = useState('');
+    const [title, setTitle] = useState(currentBusiness.title);
+    const [imgUrl, setImgUrl] = useState(currentBusiness.imgUrl);
+    const [category, setCategory] = useState(currentBusiness.category);
+    const [description, setDescription] = useState(currentBusiness.description);
+    const [address, setAddress] = useState(currentBusiness.address);
+    const [city, setCity] = useState(currentBusiness.city);
+    const [state, setState] = useState(currentBusiness.state);
+    const [zipCode, setZipCode] = useState(currentBusiness.zipCode);
 
     const updateTitle = (e) => setTitle(e.target.value);
     const updateImgUrl = (e) => setImgUrl(e.target.value);
@@ -35,6 +44,7 @@ export const AddBusinessForm = () => {
         e.preventDefault();
 
         const payload = {
+            businessId,
             ownerId,
             title,
             imgUrl,
@@ -46,10 +56,10 @@ export const AddBusinessForm = () => {
             zipCode,
         };
 
-        let createdBusiness = await dispatch(createBusiness(payload))
-        console.log(createdBusiness);
-        if (createdBusiness) {
-          history.push(`/businesses/${createdBusiness.id}`);
+        let editedBusiness = await dispatch(editBusinessDetails(payload, businessId))
+        console.log(editedBusiness);
+        if (editedBusiness) {
+          history.push(`/businesses/${editedBusiness.id}`);
         }
       };
 
@@ -58,7 +68,8 @@ export const AddBusinessForm = () => {
       };
 
 
-    return (
+
+      return (
         <section className="new-form-holder centered middled">
           <form onSubmit={handleSubmit}>
             <input
@@ -117,11 +128,9 @@ export const AddBusinessForm = () => {
               value={zipCode}
               onChange={updateZipCode} />
 
-            <button type="submit">Add A Business</button>
+            <button type="submit">Edit Business</button>
             <button type="button" onClick={handleCancelClick}>Cancel</button>
           </form>
         </section>
       );;
-
-
 }

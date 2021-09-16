@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import { BrowseBusinesses } from "./components/BrowseBusinesses";
 import { BusinessPage } from "./components/BusinessPage";
 import { AddBusinessForm } from "./components/AddBusinessForm";
+import { EditBusinessFrom } from "./components/EditBusinessForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/businesses/:businessId(//d+)">
             <BusinessPage />
+          </Route>
+          <Route exact path="/businesses/:businessId(//d+)/edit">
+            <EditBusinessFrom />
           </Route>
           <Route exact path="/businesses/new">
             <AddBusinessForm />

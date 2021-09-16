@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, NavLink, Route, useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { listOfAllBusinesses } from '../../store/businesses';
 
 
@@ -46,12 +46,12 @@ export const BrowseBusinesses = () => {
                         {listOfBusinesses.map(business => {
                             return (
                                 <>
-                                    <Link to={`/businesses/${business.id}`}>
+                                    <Link to={`/businesses/${business.id}` }>
                                         <div className="business-card">
-                                            <img className="b-img" src={business.imgUrl} alt='business'/>
-                                            <div className="b-title">{business.title}</div>
-                                            <div className="b-description">{business.description}</div>
-                                            <div className="b-location">{`${business.city}, ${business.state}`}</div>
+                                            <img className="b-img" src={business.imgUrl} alt='business' />
+                                            <div className="b-title" >{business.title}</div>
+                                            <div className="b-description" >{business.description}</div>
+                                            <div className="b-location" >{`${business.city}, ${business.state}`}</div>
                                         </div>
                                     </Link>
                                 </>
