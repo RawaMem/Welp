@@ -20,8 +20,6 @@ export const BusinessPage = () => {
 
 
 
-
-
     useEffect(() => {
         dispatch(getOneBusiness(businessId))
     }, [dispatch, businessId, currentBusiness]);
