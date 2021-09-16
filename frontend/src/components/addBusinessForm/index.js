@@ -13,7 +13,7 @@ export const AddBusinessForm = () => {
     });
 
     const [ownerId, setOwnerId] = useState(userId);
-    const [title, setTitle] = useState(userId);
+    const [title, setTitle] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
@@ -47,6 +47,7 @@ export const AddBusinessForm = () => {
         };
 
         let createdBusiness = await dispatch(createBusiness(payload))
+        console.log(createdBusiness);
         if (createdBusiness) {
           history.push(`/businesses/${createdBusiness.id}`);
         }
@@ -54,7 +55,6 @@ export const AddBusinessForm = () => {
 
       const handleCancelClick = (e) => {
         e.preventDefault();
-        hideForm();
       };
 
 
@@ -62,12 +62,11 @@ export const AddBusinessForm = () => {
         <section className="new-form-holder centered middled">
           <form onSubmit={handleSubmit}>
             <input
-              type="number"
+              type="hidden"
               placeholder="Business Name"
               min="1"
               required
               value={userId}
-            //   onChange={updateNo}
               />
             <input
               type="text"
@@ -79,7 +78,7 @@ export const AddBusinessForm = () => {
               type="text"
               placeholder="Image URL"
               required
-              value={attack}
+              value={imgUrl}
               onChange={updateImgUrl} />
               <select onChange={updateCategory}>
                 <option value="" disabled selected>Category of Business</option>
@@ -96,27 +95,27 @@ export const AddBusinessForm = () => {
             <input
               type="text"
               placeholder="Business Description"
-              value={imageUrl}
+              value={description}
               onChange={updateDescription} />
             <input
               type="text"
               placeholder="Street Address"
-              value={name}
+              value={address}
               onChange={updateAddress} />
             <input
               type="text"
               placeholder="City"
-              value={move1}
+              value={city}
               onChange={updateCity} />
             <input
               type="text"
               placeholder="State"
-              value={move2}
+              value={state}
               onChange={updateState} />
             <input
               type="text"
               placeholder="Zip Code"
-              value={move2}
+              value={zipCode}
               onChange={updateZipCode} />
 
             <button type="submit">Add A Business</button>

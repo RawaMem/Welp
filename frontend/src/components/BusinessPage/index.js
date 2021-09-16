@@ -15,7 +15,7 @@ export const BusinessPage = () => {
         return state.session.user.id
     });
 
-    console.log(`==========>Session`, session);
+    
 
     const {businessId} = useParams();
 

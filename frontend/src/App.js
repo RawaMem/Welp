@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import { BrowseBusinesses } from "./components/BrowseBusinesses";
 import { BusinessPage } from "./components/BusinessPage";
+import { AddBusinessForm } from "./components/AddBusinessForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,8 +35,11 @@ function App() {
           <Route exact path="/businesses">
             <BrowseBusinesses />
           </Route>
-          <Route exact path="/businesses/:businessId">
+          <Route exact path="/businesses/:businessId(//d+)">
             <BusinessPage />
+          </Route>
+          <Route exact path="/businesses/new">
+            <AddBusinessForm />
           </Route>
         </Switch>
       )}

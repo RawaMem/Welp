@@ -84,7 +84,7 @@ export const deleteBusiness = (businessId) => async dispatch => {
     if(response.ok){
       const updatedBusiness = await response.json()
       dispatch(destroyBusiness(updatedBusiness))
-      return updatedBusiness;
+      return 'deleted';
     }
 };
 
