@@ -89,8 +89,6 @@ export const deleteBusiness = (businessId) => async dispatch => {
 };
 
 
-
-
 const initialState = {list: []};
 
 const businessReducer = (state = initialState, action) => {
@@ -99,7 +97,7 @@ const businessReducer = (state = initialState, action) => {
         case GET_ALL_BUSINESSES: {
             const allBusinesses = action.list
             newState = {
-                list: allBusinesses
+                list: allBusinesses,
             }
             return newState
         }
