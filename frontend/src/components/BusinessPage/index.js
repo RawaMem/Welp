@@ -40,10 +40,10 @@ export const BusinessPage = () => {
     console.log('=================>', currentBusiness);
 
     const deleteThisBusiness = (e) => {
-        // e.preventDefault();
-        dispatch(deleteThisBusiness(businessId));
+        e.preventDefault();
+        dispatch(deleteBusiness(businessId));
         // if (deleted) {
-        //     history.push(`/`);
+        history.push(`/`);
         //   }
     }
 

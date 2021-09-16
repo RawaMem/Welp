@@ -1,42 +1,44 @@
 import { csrfFetch } from "./csrf";
-
-const REVIEWS_FOR_BUSINESS = `reviews/getReviewsForOneBusiness`;
-const USER_REVIEW_FOR_BUSINESS = `reviews/getUserReviewForBusiness`;
-const ADD_REVIEW = `reviews/addReview`;
+const GET_ALL_REVIEWS = `reviews/getReviewsForOneBusiness`;
+const GET_USER_REVIEW = `reviews/getUserReviewForBusiness`;
 const EDIT_REVIEW = `reviews/editReview`;
+const ADD_REVIEW = `reviews/addReview`;
 const DELETE_REVIEW = `reviews/deleteReview`;
 
 
-const getReviews = id => ({
-    type: REVIEWS_FOR_BUSINESS,
+const getReviews = reviewList => ({
+    type: GET_ALL_REVIEWS,
+    reviewList
+});
+
+const userReview = id => ({
+    type: GET_USER_REVIEW,
     id
 });
 
-// const userReview = id => ({
-//     type: USER_REVIEW_FOR_BUSINESS,
-//     id
-// });
+const editReview = updatedReview => ({
+    type: EDIT_REVIEW,
+    updatedReview
+});
 
-// const addReview = reviewDetails => ({
-//     type: ADD_REVIEW,
-//     reviewDetails
+const addReview = reviewDetails => ({
+    type: ADD_REVIEW,
+    reviewDetails
 
-// });
+});
 
-// const editReview = reviewDetails => ({
-//     type: EDIT_REVIEW,
-//     reviewDetails
-// });
-
-// const deleteReview = id => ({
-//     type: DELETE_REVIEW,
-//     id
-// });
+const deleteReview = details => ({
+    type: DELETE_REVIEW,
+    details
+});
 
 
 //get all review for a business
-export const allReviewsForBusiness = (business) => async dispatch => {
-    const response = await csrfFetch(`api/business/${business.id}/reviews`);
+export const allReviewsForBusiness = (businessId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews`, {
+        method: 'GET',
+        body: JSON.stringify({businessId})
+      })
 
     if (response.ok) {
         const reviewList = await response.json();
@@ -44,12 +46,113 @@ export const allReviewsForBusiness = (business) => async dispatch => {
     }
 };
 
-// export const userReviewForBusiness = (id) => async dispatch => {
-//     const response = await fetch(``);
+export const userReviewForBusiness = (businessId, userId) => async dispatch => {
+    const response = await fetch(`/api/reviews`, {
+        method: 'GET',
+        body: JSON.stringify({businessId, userId})
+      })
 
-//     if (response.ok) {
-//         const userReviewList = await response.json();
-//         dispatch(userReview())
+    if (response.ok) {
+        const userReview = await response.json();
+        dispatch(userReview(userReview));
+        return userReview;
 
-//     }
-// }
+    }
+}
+
+export const createReview = (reviewDetails) => async dispatch => {
+    const response = await csrfFetch('/api/reviews', {
+      method: 'POST',
+      body: JSON.stringify(reviewDetails)
+    })
+    if(response.ok){
+      const newReview = await response.json()
+      dispatch(addReview(newReview))
+      return newReview;
+    }
+};
+
+export const editReviewDetails = (reviewDetails) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewDetails.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(reviewDetails)
+    })
+    if(response.ok){
+      const updatedReview = await response.json()
+      dispatch(editReview(updatedReview))
+      return updatedReview;
+    }
+};
+
+export const deleteUserReview = (reviewId) => async dispatch => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: 'DELETE',
+      body: JSON.stringify({reviewId})
+
+    })
+    if(response.ok){
+        const allReviews = await response.json();
+        dispatch(getReviews(allReviews));
+        return 'deleted';
+    }
+};
+
+const initialState = {list: [], currentReview: []};
+
+const reviewReducer = (state = initialState, action) => {
+    let newState;
+    switch (action.type) {
+        case GET_ALL_REVIEWS: {
+            const allReviews = action.reviewList
+            newState = {
+                list: allReviews,
+                currentReview: []
+            }
+            return newState
+        }
+        case GET_USER_REVIEW: {
+            newState = {...state}
+            newState.list.
+            newState.currentReview = action.details
+            console.log('=========>', newState);
+            return newState
+        }
+        case EDIT_REVIEW: {
+            newState = {...state};
+            const reviewToUpdate = newState.list.find((review) => review.id === action.updatedReview.id)
+
+            newState.list.map(review => {
+                if (review.id === reviewToUpdate.id) {
+                    return review = action.updatedReview
+                } else {
+                    return review
+                }
+            })
+
+            return newState
+        }
+        case ADD_REVIEW: {
+            newState = {...state};
+            newState.list.push(action.reviewDetails)
+            return newState;
+        }
+
+        case DELETE_REVIEW: {
+            newState = {...state};
+            let newReviewList = newState.list.map(review => {
+                if (review.id !== action.details.id) {
+                    return review;
+                }
+                return null;
+            });
+            newState = {
+                list: newReviewList
+            }
+            return newState
+        }
+        default:
+            return state
+    }
+}
+
+export default reviewReducer;

@@ -8,12 +8,14 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const businessRouter = require(`./businesses`);
 const searchRouter = require('./search');
+const reviewRouter = require('./reviews');
 
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/businesses', businessRouter);
 router.use('/search', searchRouter);
+router.use('/reviews', reviewRouter);
 
 
 
