@@ -33,38 +33,51 @@ router.post('/', asyncHandler(async function(req, res) {
 
 //edit a business
 router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
-    const updatedBusiness = await Business.update(req.body);
-    return res.redirect(`/api/businesses/${updatedBusiness.id}`)
+    const {
+        id,
+        ownerId,
+        title,
+        imgUrl,
+        category,
+        description,
+        address,
+        city,
+        state,
+        zipCode,
+    } = req.body
+    const businessToEdit = await Business.findByPk(id);
+
+    console.log('=========>', businessToEdit)
+
+    await businessToEdit.update({
+        id: id,
+        ownerId: ownerId,
+        title: title,
+        imgUrl: imgUrl,
+        category: category,
+        description: description,
+        address: address,
+        city: city,
+        state: state,
+        zipCode: zipCode,
+    });
+
+    const newBusiness = await Business.findByPk(id);
+
+    console.log('=========>UPDATED', newBusiness)
+    // return res.redirect(`/api/businesses/${updatedBusiness.id}`)
+
+    res.json(newBusiness);
 }));
 
 //delete a business
 router.delete('/:businessId(\\d+)', asyncHandler(async function(req, res) {
-    const id = parseInt(req.params.id, 10);
-    await Business.destroy({
-        where: {
-            id
-        }
-    });
-    return res.redirect(`/api/businesses`)
+    const {businessId} = req.body
+    const business = await Business.findByPk(businessId)
+    await business.destroy();
+    const allBusinesses = await Business.findAll();
+    return res.json(allBusinesses)
 }));
-
-
-
-//get all reviews for a business
-router.get('/:businessId(\\d+)/reviews', asyncHandler(async function(req, res) {
-    const businessId = req.params.businessId
-    const reviews = await Review.findAll({
-        where: {
-            businessId: businessId
-        }
-    })
-    return res.json(reviews)
-}));
-
-
-
-
-
 
 
 

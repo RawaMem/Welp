@@ -45,7 +45,7 @@ export const EditBusinessFrom = () => {
         e.preventDefault();
 
         const payload = {
-            businessId,
+            id: businessId,
             ownerId,
             title,
             imgUrl,
@@ -57,7 +57,7 @@ export const EditBusinessFrom = () => {
             zipCode,
         };
 
-        let editedBusiness = await dispatch(editBusinessDetails(payload, businessId))
+        let editedBusiness = await dispatch(editBusinessDetails(payload))
         console.log(editedBusiness);
         if (editedBusiness) {
           history.push(`/businesses/${editedBusiness.id}`);

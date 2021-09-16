@@ -16,9 +16,9 @@ const oneBusinessDetails = details => ({
     details
 });
 
-const editBusinesses = details => ({
+const editBusinesses = updatedBusiness => ({
     type: EDIT_BUSINESS,
-    details
+    updatedBusiness
 });
 
 const addBusinesses = details => ({
@@ -63,8 +63,8 @@ export const createBusiness = (businessDetails) => async dispatch => {
 };
 
 
-export const editBusinessDetails = (businessDetails, businessId) => async dispatch => {
-    const response = await csrfFetch(`/api/businesses/${businessId}`, {
+export const editBusinessDetails = (businessDetails) => async dispatch => {
+    const response = await csrfFetch(`/api/businesses/${businessDetails.id}`, {
       method: 'PUT',
       body: JSON.stringify(businessDetails)
     })
@@ -78,13 +78,13 @@ export const editBusinessDetails = (businessDetails, businessId) => async dispat
 export const deleteBusiness = (businessId) => async dispatch => {
     const response = await csrfFetch(`/api/businesses/${businessId}`, {
       method: 'DELETE',
-      body: JSON.stringify(businessId)
+      body: JSON.stringify({businessId})
 
     })
     if(response.ok){
-      const updatedBusiness = await response.json()
-      dispatch(destroyBusiness(updatedBusiness))
-      return 'deleted';
+        const allBusinesses = await response.json();
+        dispatch(getAllBusinesses(allBusinesses));
+        return 'deleted';
     }
 };
 
@@ -110,16 +110,16 @@ const businessReducer = (state = initialState, action) => {
         }
         case EDIT_BUSINESS: {
             newState = {...state};
-            let newBusinessList = newState.list.map(business => {
-                if (business.id === action.details.id) {
-                    return action.detail;
+            const businessToUpdate = newState.list.find((business) => business.id === action.updatedBusiness.id)
+
+            newState.list.map(business => {
+                if (business.id === businessToUpdate.id) {
+                    return business = action.updatedBusiness
                 } else {
-                    return business;
+                    return business
                 }
-            });
-            newState = {
-                list: newBusinessList
-            }
+            })
+
             return newState
         }
         case ADD_BUSINESS: {
