@@ -42,7 +42,7 @@ router.post('/', asyncHandler(async function(req, res) {
 
 
 //edit a review
-router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
+router.put('/edit/:reviewId(\\d+)', asyncHandler(async function(req, res) {
     const {
         reviewId,
         userId,
