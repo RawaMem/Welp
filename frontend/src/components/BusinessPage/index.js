@@ -81,7 +81,7 @@ export const BusinessPage = () => {
                 </Link>
                 <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
             </div>
-            {!userReview &&
+            {!userReview && userId &&
             (<Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
                 <button className="add-review-button">Add Review</button>
             </Link>)
