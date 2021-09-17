@@ -57,6 +57,7 @@ export const BusinessPage = () => {
         history.push(`/`);
     }
 
+    // const conditional = +review?.userId === +userId && +review?.businessId === +businessId;
 
     return(
         <>
@@ -75,6 +76,9 @@ export const BusinessPage = () => {
                 </Link>
                 <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
             </div>
+            <Link to={`/businesses/${currentBusiness?.id}/reviews/new`}>
+                <button className="add-review-button">Add Review</button>
+            </Link>
 
             {/* <div className="user-review">
             {reviewList.map(review => {
@@ -101,17 +105,21 @@ export const BusinessPage = () => {
                                 <div className="rating"><p>{review.rating}</p></div>
                                 <div className="content"><p>{review.content}</p></div>
                             </div>
+                            <Link to={`/reviews/${review?.id}/edit`}>
+                                <button value={review.id} className="review-edit">Edit</button>
+                            </Link>
+                             <button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>
                         </>
                         ) : false
 
-                        +review?.userId === +userId && +review?.businessId === +businessId ? (
-                            <>
-                                <Link to={`/reviews/${review?.id}/edit`}>
-                                    <button value={review.id} className="review-edit">Edit</button>
-                                </Link>
-                                <button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>
-                            </>
-                        ) : false
+                        // conditional ? (
+                        //     <>
+                        //         <Link to={`/reviews/${review?.id}/edit`}>
+                        //             <button value={review.id} className="review-edit">Edit</button>
+                        //         </Link>
+                        //         <button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>
+                        //     </>
+                        // ) : false
 
                     )
                 })}
