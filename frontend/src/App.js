@@ -9,6 +9,8 @@ import { BrowseBusinesses } from "./components/BrowseBusinesses";
 import { BusinessPage } from "./components/BusinessPage";
 import { AddBusinessForm } from "./components/AddBusinessForm";
 import { EditBusinessFrom } from "./components/EditBusinessForm";
+import { AddReviewPage } from "./components/AddReviewPage";
+import { EditReview } from "./components/EditReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +46,12 @@ function App() {
           </Route>
           <Route exact path="/addbusinesses/new">
             <AddBusinessForm />
+          </Route>
+          <Route exact path="/businesses/:businessId/reviews/new">
+            <AddReviewPage />
+          </Route>
+          <Route exact path="/businesses/:businessId/reviews/:reviewId/edit">
+            <EditReview />
           </Route>
         </Switch>
       )}

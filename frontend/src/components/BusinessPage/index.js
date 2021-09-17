@@ -4,12 +4,14 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { deleteBusiness, getOneBusiness, listOfAllBusinesses } from '../../store/businesses';
 import { allReviewsForBusiness, deleteUserReview } from '../../store/reviews';
 import { BrowseBusinesses } from '../BrowseBusinesses';
+import './BusinessPage.css';
 
 
 export const BusinessPage = () => {
     const dispatch = useDispatch();
     const {businessId} = useParams();
     const history = useHistory();
+    const [hideMe, setHideMe] = useState('')
 
     // const [deleteId, setDeleteId] = useState(businessId)
 
@@ -26,6 +28,10 @@ export const BusinessPage = () => {
         return state.session.user?.id
     });
 
+    const reviewList = useSelector(state => {
+        return state.reviews?.list
+    })
+
     useEffect(() => {
         dispatch(listOfAllBusinesses())
         // dispatch(allReviewsForBusiness())
@@ -36,13 +42,16 @@ export const BusinessPage = () => {
     }, [dispatch, businessId]);
 
 
-    const reviewList = useSelector(state => {
-        return state.reviews.list
-    })
 
     const businessReviews = reviewList?.filter(review => review.businessId === businessId)
 
-    const userReview = businessReviews?.filter(review => review.userId === userId);
+    const userReview = businessReviews?.filter(review => review?.userId === userId);
+
+    // if (userReview.length === 0) {
+    //     setHideMe('visible');
+    // } else {
+    //     setHideMe('hidden');
+    // }
 
 
     const deleteThisBusiness = (e) => {
@@ -54,7 +63,7 @@ export const BusinessPage = () => {
     const deleteThisReview = (e) => {
         e.preventDefault();
         dispatch(deleteUserReview(e.target.value));
-        history.push(`/`);
+        history.push(`/businesses/${businessId}`);
     }
 
     // const conditional = +review?.userId === +userId && +review?.businessId === +businessId;
@@ -76,7 +85,8 @@ export const BusinessPage = () => {
                 </Link>
                 <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
             </div>
-            <Link to={`/businesses/${currentBusiness?.id}/reviews/new`}>
+
+            <Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
                 <button className="add-review-button">Add Review</button>
             </Link>
 
@@ -106,7 +116,7 @@ export const BusinessPage = () => {
                                 <div className="content"><p>{review.content}</p></div>
                             </div>
                             {userId && userId === review?.userId &&
-                            (<Link to={`/reviews/${review?.id}/edit`}>
+                            (<Link to={`/businesses/${businessId}/reviews/${review?.id}/edit`}>
                                 <button value={review.id} className="review-edit">Edit</button>
                             </Link>)
                             }
@@ -116,18 +126,8 @@ export const BusinessPage = () => {
                         </>
                         ) : false
 
-                        // conditional ? (
-                        //     <>
-                        //         <Link to={`/reviews/${review?.id}/edit`}>
-                        //             <button value={review.id} className="review-edit">Edit</button>
-                        //         </Link>
-                        //         <button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>
-                        //     </>
-                        // ) : false
-
                     )
                 })}
-
             </div>
 
         </>

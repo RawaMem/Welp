@@ -29,7 +29,14 @@ router.get('/', asyncHandler(async function(req, res) {
 
 //create a review
 router.post('/', asyncHandler(async function(req, res) {
-    const newReview = await Review.create(req.body);
+    const { userId, businessId, rating, content } = req.body
+    const newReview = await Review.create({
+        userId: +userId,
+        businessId: +businessId,
+        rating: +rating,
+        content: content
+    });
+
     return res.redirect(`/api/businesses/${newReview.businessId}`)
 }));
 
@@ -37,25 +44,25 @@ router.post('/', asyncHandler(async function(req, res) {
 //edit a review
 router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
     const {
-        id,
+        reviewId,
         userId,
         businessId,
         rating,
         content,
     } = req.body
-    const reviewToEdit = await Review.findByPk(id);
+    const reviewToEdit = await Review.findByPk(reviewId);
 
     console.log('=========>', reviewToEdit)
 
     await reviewToEdit.update({
-        id: id,
+        id: reviewId,
         userId: userId,
         businessId: businessId,
         rating: rating,
         content: content,
     });
 
-    const newReview = await Review.findByPk(id);
+    const newReview = await Review.findByPk(reviewId);
 
     console.log('=========>UPDATED', newReview)
     // return res.redirect(`/api/businesses/${updatedBusiness.id}`)
