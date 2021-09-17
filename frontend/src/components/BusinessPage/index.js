@@ -47,11 +47,6 @@ export const BusinessPage = () => {
 
     const userReview = businessReviews?.filter(review => review?.userId === userId);
 
-    // if (userReview.length === 0) {
-    //     setHideMe('visible');
-    // } else {
-    //     setHideMe('hidden');
-    // }
 
 
     const deleteThisBusiness = (e) => {
