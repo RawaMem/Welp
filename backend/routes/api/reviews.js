@@ -10,27 +10,22 @@ const router = express.Router();
 
 
 //get all reviews for a business
-router.get('/reviews', asyncHandler(async function(req, res) {
-    const {businessId} = req.body
-    const reviews = await Review.findAll({
-        where: {
-            businessId: +businessId
-        }
-    })
-    return res.json(reviews)
+router.get('/', asyncHandler(async function(req, res) {
+    const reviewList = await Review.findAll()
+    return res.json(reviewList)
 }));
 
-//get user review
-router.get('/reviews', asyncHandler(async function(req, res) {
-    const {businessId, userId} = req.params.businessId
-    const userReview = await Review.findOne({
-        where: {
-            businessId: businessId,
-            userId: userId
-        }
-    })
-    return res.json(userReview)
-}));
+// //get user review
+// router.get('/reviews', asyncHandler(async function(req, res) {
+//     const {businessId, userId} = req.params.businessId
+//     const userReview = await Review.findOne({
+//         where: {
+//             businessId: businessId,
+//             userId: userId
+//         }
+//     })
+//     return res.json(userReview)
+// }));
 
 //create a review
 router.post('/', asyncHandler(async function(req, res) {
@@ -68,10 +63,10 @@ router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
     res.json(newReview);
 }));
 
-//delete a business
-router.delete('/reviews/:reviewId(\\d+)', asyncHandler(async function(req, res) {
+//delete a review
+router.delete('/:reviewId(\\d+)', asyncHandler(async function(req, res) {
     const {reviewId} = req.body
-    const review = await Review.findByPk(reviewId)
+    const review = await Review.findByPk(+reviewId)
     await review.destroy();
     const allReviews = await Review.findAll();
     return res.json(allReviews)

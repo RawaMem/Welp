@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { deleteBusiness, getOneBusiness, listOfAllBusinesses } from '../../store/businesses';
+import { allReviewsForBusiness, deleteUserReview } from '../../store/reviews';
 import { BrowseBusinesses } from '../BrowseBusinesses';
 
 
@@ -19,7 +20,7 @@ export const BusinessPage = () => {
     const currentBusiness = AllBusiness.find(business => {
         return +businessId === business.id
     })
-    console.log('=======>', currentBusiness)
+
 
     const userId = useSelector(state => {
         return state.session.user.id
@@ -27,39 +28,35 @@ export const BusinessPage = () => {
 
     useEffect(() => {
         dispatch(listOfAllBusinesses())
+        // dispatch(allReviewsForBusiness())
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(allReviewsForBusiness())
+    }, [dispatch, businessId]);
 
 
     const reviewList = useSelector(state => {
         return state.reviews.list
     })
 
-    const userReview = reviewList.filter(review => {
-        if (review.userId === userId && review.businessId === businessId) {
-            return review;
-        }
-    })
+    const businessReviews = reviewList?.filter(review => review.businessId === businessId)
 
+    const userReview = businessReviews?.filter(review => review.userId === userId);
 
-
-
-    // useEffect(() => {
-    //     dispatch(getOneBusiness(businessId))
-    // }, [dispatch, businessId, currentBusiness]);
-
-    // useEffect(() => {
-    //     dispatch(deleteBusiness(deleteId))
-    // }, [deleteId, dispatch])
-
-    console.log('=================>', currentBusiness);
 
     const deleteThisBusiness = (e) => {
         e.preventDefault();
         dispatch(deleteBusiness(businessId));
-        // if (deleted) {
         history.push(`/`);
-        //   }
     }
+
+    const deleteThisReview = (e) => {
+        e.preventDefault();
+        dispatch(deleteUserReview(e.target.value));
+        history.push(`/`);
+    }
+
 
     return(
         <>
@@ -73,10 +70,52 @@ export const BusinessPage = () => {
             </div>
 
             <div className="user-business-options">
-                <Link to={`/businesses/${currentBusiness.id}/edit`}>
+                <Link to={`/businesses/${currentBusiness?.id}/edit`}>
                     <button className="edit-btn">Edit Business</button>
                 </Link>
                 <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
+            </div>
+
+            {/* <div className="user-review">
+            {reviewList.map(review => {
+                    return (
+                        +review?.businessId === +businessId && +review?.userId === +userId ? (
+                        <>
+                            <div className="r-container">
+                                <div className="rating"><p>{review.rating}</p></div>
+                                <div className="content"><p>{review.content}</p></div>
+                            </div>
+                        </>
+                        ) : false
+                    )
+                })}
+                note: this code
+            </div> */}
+
+            <div className="review-container">
+                {reviewList.map(review => {
+                    return (
+                        +review?.businessId === +businessId ? (
+                        <>
+                            <div className="r-container">
+                                <div className="rating"><p>{review.rating}</p></div>
+                                <div className="content"><p>{review.content}</p></div>
+                            </div>
+                        </>
+                        ) : false
+
+                        +review?.userId === +userId && +review?.businessId === +businessId ? (
+                            <>
+                                <Link to={`/reviews/${review?.id}/edit`}>
+                                    <button value={review.id} className="review-edit">Edit</button>
+                                </Link>
+                                <button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>
+                            </>
+                        ) : false
+
+                    )
+                })}
+
             </div>
 
         </>
