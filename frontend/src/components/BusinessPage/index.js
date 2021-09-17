@@ -23,7 +23,7 @@ export const BusinessPage = () => {
 
 
     const userId = useSelector(state => {
-        return state.session.user.id
+        return state.session.user?.id
     });
 
     useEffect(() => {
@@ -105,10 +105,14 @@ export const BusinessPage = () => {
                                 <div className="rating"><p>{review.rating}</p></div>
                                 <div className="content"><p>{review.content}</p></div>
                             </div>
-                            <Link to={`/reviews/${review?.id}/edit`}>
+                            {userId && userId === review?.userId &&
+                            (<Link to={`/reviews/${review?.id}/edit`}>
                                 <button value={review.id} className="review-edit">Edit</button>
-                            </Link>
-                             <button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>
+                            </Link>)
+                            }
+                            {userId && userId === review?.userId &&
+                             (<button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>)
+                            }
                         </>
                         ) : false
 
