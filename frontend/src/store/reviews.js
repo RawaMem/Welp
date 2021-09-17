@@ -16,9 +16,9 @@ const userReview = id => ({
     id
 });
 
-const editReview = updatedReview => ({
+const editReview = newReview => ({
     type: EDIT_REVIEW,
-    updatedReview
+    newReview
 });
 
 const addReview = reviewDetails => ({
@@ -58,7 +58,7 @@ export const allReviewsForBusiness = (businessId) => async dispatch => {
 // }
 
 export const createReview = (reviewDetails) => async dispatch => {
-    const response = await csrfFetch('/api/reviews', {
+    const response = await csrfFetch('/api/reviews/', {
       method: 'POST',
       body: JSON.stringify(reviewDetails)
     })
@@ -70,14 +70,14 @@ export const createReview = (reviewDetails) => async dispatch => {
 };
 
 export const editReviewDetails = (reviewDetails) => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${reviewDetails.id}`, {
+    const response = await csrfFetch(`/api/reviews/edit/${reviewDetails.reviewId}`, {
       method: 'PUT',
       body: JSON.stringify(reviewDetails)
     })
     if(response.ok){
-      const updatedReview = await response.json()
-      dispatch(editReview(updatedReview))
-      return updatedReview;
+      const newReview = await response.json()
+      dispatch(editReview(newReview))
+      return newReview;
     }
 };
 
@@ -116,16 +116,16 @@ const reviewReducer = (state = initialState, action) => {
         }
         case EDIT_REVIEW: {
             newState = {...state};
-            const reviewToUpdate = newState.list.find((review) => review.id === action.updatedReview.id)
+            const reviewToUpdate = newState.list.find((review) => review.id === action.newReview.id)
 
-            newState.list.map(review => {
+            const mappedState = newState.list.map(review => {
                 if (review.id === reviewToUpdate.id) {
-                    return review = action.updatedReview
+                    return review = action.newReview
                 } else {
                     return review
                 }
-            })
-
+            });
+            newState.list = mappedState;
             return newState
         }
         case ADD_REVIEW: {

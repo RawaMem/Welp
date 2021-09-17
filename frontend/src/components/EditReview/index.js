@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { createReview } from '../../store/reviews';
+import { editReviewDetails } from '../../store/reviews';
 
 
-export const AddReviewPage = () => {
+export const EditReview = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const {businessId} = useParams();
+    const {reviewId} = useParams();
 
     const userId = useSelector(state => {
         return state.session.user?.id
@@ -25,13 +26,14 @@ export const AddReviewPage = () => {
         e.preventDefault();
 
         const payload = {
+            reviewId,
             userId,
             businessId,
             rating,
             content,
         };
 
-        dispatch(createReview(payload))
+        dispatch(editReviewDetails(payload))
 
         history.push(`/businesses/${businessId}`);
 
