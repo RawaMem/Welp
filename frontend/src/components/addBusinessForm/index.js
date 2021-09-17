@@ -11,7 +11,7 @@ export const AddBusinessForm = () => {
     const userId = useSelector(state => {
         return state.session.user.id
     });
-
+    //git folder fix
     const [ownerId, setOwnerId] = useState(userId);
     const [title, setTitle] = useState('');
     const [imgUrl, setImgUrl] = useState('');
