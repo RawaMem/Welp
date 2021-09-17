@@ -121,7 +121,7 @@ export const AddBusinessForm = () => {
             <button type="button" onClick={handleCancelClick}>Cancel</button>
           </form>
         </section>
-      );;
+      );
 
 
 }

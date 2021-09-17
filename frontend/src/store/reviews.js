@@ -35,10 +35,7 @@ const deleteReview = details => ({
 
 //get all review for a business
 export const allReviewsForBusiness = (businessId) => async dispatch => {
-    const response = await csrfFetch(`/api/reviews`, {
-        method: 'GET',
-        body: JSON.stringify({businessId})
-      })
+    const response = await csrfFetch(`/api/reviews`)
 
     if (response.ok) {
         const reviewList = await response.json();
@@ -46,19 +43,19 @@ export const allReviewsForBusiness = (businessId) => async dispatch => {
     }
 };
 
-export const userReviewForBusiness = (businessId, userId) => async dispatch => {
-    const response = await fetch(`/api/reviews`, {
-        method: 'GET',
-        body: JSON.stringify({businessId, userId})
-      })
+// export const userReviewForBusiness = (businessId, userId) => async dispatch => {
+//     const response = await fetch(`/api/reviews`, {
+//         method: 'GET',
+//         body: JSON.stringify({businessId, userId})
+//       })
 
-    if (response.ok) {
-        const userReview = await response.json();
-        dispatch(userReview(userReview));
-        return userReview;
+//     if (response.ok) {
+//         const userReview = await response.json();
+//         dispatch(userReview(userReview));
+//         return userReview;
 
-    }
-}
+//     }
+// }
 
 export const createReview = (reviewDetails) => async dispatch => {
     const response = await csrfFetch('/api/reviews', {
