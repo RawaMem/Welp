@@ -41,7 +41,19 @@ export const BrowseBusinesses = () => {
                 </div>
                 <div className="main-body">
                     <div className="location-cities">
-                        <div className="location-title">Welp Newport Beach</div>
+                        <h2 className="location-title">Welp Newport Beach</h2>
+                        <div className="cities">
+                            <p>Irvine</p>
+                            <p>Austin</p>
+                            <p>Dallas</p>
+                            <p>Houston</p>
+                            <p>San Antonio</p>
+                            <p>San Francisco</p>
+                            <p>New York</p>
+                            <p>San Jose</p>
+                            <p>Los Angeles</p>
+                            <p>Chicago</p>
+                        </div>
 
                     </div>
                     <div className="new-businesses">
