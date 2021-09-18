@@ -62,14 +62,23 @@
 
 .card-text {
     margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .location-cities {
+    text-align: center;
+}
+
+.location-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
     color: rgb(211, 35, 35);
     font-size: 21px;
     font-weight: 700;
-    text-align: center;
+
 }
+
+
 
 .cities {
     display: flex;
@@ -78,6 +87,16 @@
     font-weight: 400;
     line-height: 30px;
     color: rgb(102, 102, 102);
+    border-bottom: 1px solid rgb(102, 102, 102);
 
+}
+
+.cities-name {
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.cities-name:hover {
+    color: rgb(211, 35, 35);
 
 }
