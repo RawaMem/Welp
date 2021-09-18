@@ -1,0 +1,70 @@
+
+.browse-busienss-container {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+
+.searchbar-container {
+    background-image: url(https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_large_assets/65e6a224ada4/assets/img/home/hero_photos/cz8iYo13MpBBGlFLlkA8Sw.jpg);
+    height: 570px;
+}
+
+.main-body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+}
+
+.b-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(0, 115, 187);
+    text-decoration: none;
+}
+
+.business-card {
+    width: 297px;
+    height: 319px;
+    border: 1px solid rgb(230, 230, 230);
+    margin: 20px 40px;
+    border-radius: 4px;
+
+}
+
+.business-card:hover {
+    box-shadow: 0 6px 12px rgb(0 0 0 / 30%);
+}
+
+.b-img {
+    height: 180px;
+    width: 297px;
+    margin-bottom: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.new-businesses {
+    display: flex;
+    justify-content: center;
+    margin: 20px 40px;
+
+}
+
+.b-link {
+    text-decoration: none;
+}
+
+.b-link:hover {
+    text-decoration: underline;
+    text-decoration-color: rgb(0, 115, 187);
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+.location-cities {
+    color: rgb(211, 35, 35);
+    font-size: 21px;
+}

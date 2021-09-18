@@ -43,10 +43,11 @@ export const BusinessPage = () => {
 
 
 
-    const businessReviews = reviewList?.filter(review => review.businessId === businessId)
+    const businessReviews = reviewList?.filter(review => review.businessId === +businessId)
 
-    const userReview = businessReviews?.filter(review => review?.userId === userId);
-
+    const [userReview] = businessReviews?.filter(review => review?.userId === +userId);
+    console.log('=========>', businessReviews);
+    console.log('=========>', userReview);
 
 
     const deleteThisBusiness = (e) => {
@@ -66,7 +67,7 @@ export const BusinessPage = () => {
     return(
         <>
             <div className="page-container">
-                <div className="business-card">
+                <div className="business-details">
                     <img className="b-img" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
                     <div className="b-title">{currentBusiness?.title}</div>
                     <div className="b-description">{currentBusiness?.description}</div>
@@ -80,10 +81,11 @@ export const BusinessPage = () => {
                 </Link>
                 <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
             </div>
-
-            <Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
+            {!userReview && userId &&
+            (<Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
                 <button className="add-review-button">Add Review</button>
-            </Link>
+            </Link>)
+            }
 
             {/* <div className="user-review">
             {reviewList.map(review => {
