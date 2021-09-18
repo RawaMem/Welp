@@ -67,7 +67,7 @@ export const BusinessPage = () => {
     return(
         <>
             <div className="page-container">
-                <div className="business-card">
+                <div className="business-details">
                     <img className="b-img" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
                     <div className="b-title">{currentBusiness?.title}</div>
                     <div className="b-description">{currentBusiness?.description}</div>
