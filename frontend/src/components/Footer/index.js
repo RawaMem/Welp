@@ -61,7 +61,9 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="lower-footer">
+                <a href="https://github.com/RawaMem" className="github-link" >
                 <p>Designed and Engineered by Rawaha Memon</p>
+                </a>
             </div>
 
 
