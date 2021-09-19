@@ -27,6 +27,11 @@ function LoginFormPage() {
       });
   }
 
+  const handleDemo = () => {
+    setCredential('DemoUser');
+    setPassword('password');
+  }
+
   return (
     <>
       <div className='top-bar'>
@@ -69,7 +74,8 @@ function LoginFormPage() {
                   className='signup-input'
                 />
 
-              <button className='signup-btn' type="submit">Log In</button>
+              <button className='user-login-btn' type="submit">Log In</button>
+              <button className='user-login-btn' type="submit" onClick={handleDemo}>Demo User</button>
               <p className='bottom-text'>New to Welp? <a className='in-text-link'>Sign up</a></p>
             </form>
           </div>

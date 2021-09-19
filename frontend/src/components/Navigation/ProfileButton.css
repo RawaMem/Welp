@@ -27,6 +27,7 @@
     font-weight: 500;
     font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     padding: 10px;
+    z-index: 10;
 
 }
 
