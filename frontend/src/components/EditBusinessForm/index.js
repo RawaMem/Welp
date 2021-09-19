@@ -80,7 +80,6 @@ export const EditBusinessFrom = () => {
               min="1"
               required
               value={userId}
-              className='edit-business-input'
               />
             <input
               type="text"
@@ -141,9 +140,8 @@ export const EditBusinessFrom = () => {
               className='edit-business-input' />
 
             <button className='edit-business-btn' type="submit">Edit Business</button>
-            {/* <button className='edit-business-btn' type="button" onClick={handleCancelClick}>Cancel</button> */}
           </form>
           <Footer />
         </section>
-      );;
+      );
 }

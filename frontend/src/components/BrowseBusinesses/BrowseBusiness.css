@@ -34,7 +34,7 @@
 }
 
 .business-card:hover {
-    box-shadow: 0 6px 12px rgb(0 0 0 / 30%);
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .b-img {
@@ -101,4 +101,30 @@
 .cities-name:hover {
     color: rgb(211, 35, 35);
 
+}
+
+.add-business-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-business-btn {
+    box-sizing: border-box;
+    height: 41px;
+    width: 300px;
+    background-color: rgb(244, 57, 57);
+    border: 1px solid rgb(244, 57, 57);
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    border-radius: 3px;
+    font-weight: 700;
+    transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 10px;
+}
+
+.add-business-btn:hover {
+    background-color: rgb(218, 52, 52);
+    border: 1px solid rgb(218, 52, 52);
 }

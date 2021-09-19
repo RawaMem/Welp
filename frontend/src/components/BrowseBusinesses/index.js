@@ -75,6 +75,11 @@ export const BrowseBusinesses = () => {
                         })}
 
                     </div>
+                    <div className="add-business-btn-container">
+                        <Link to='/addbusinesses/new'>
+                            <button className='add-business-btn'>Add A Business</button>
+                            </Link>
+                    </div>
                     <div className="recent-collections">
 
                     </div>
