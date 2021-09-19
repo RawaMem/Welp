@@ -2,6 +2,7 @@ import { useEffect  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { listOfAllBusinesses } from '../../store/businesses';
+import { Footer } from '../Footer';
 import './BrowseBusiness.css'
 
 
@@ -41,7 +42,19 @@ export const BrowseBusinesses = () => {
                 </div>
                 <div className="main-body">
                     <div className="location-cities">
-                        <div className="location-title">Welp Newport Beach</div>
+                        <h2 className="location-title">Welp Newport Beach</h2>
+                        <div className="cities">
+                            <p className="cities-name">Irvine</p>
+                            <p className="cities-name">Austin</p>
+                            <p className="cities-name">Dallas</p>
+                            <p className="cities-name">Houston</p>
+                            <p className="cities-name">San Antonio</p>
+                            <p className="cities-name">San Francisco</p>
+                            <p className="cities-name">New York</p>
+                            <p className="cities-name">San Jose</p>
+                            <p className="cities-name">Los Angeles</p>
+                            <p className="cities-name">Chicago</p>
+                        </div>
 
                     </div>
                     <div className="new-businesses">
@@ -68,6 +81,7 @@ export const BrowseBusinesses = () => {
                     <div className="recent-activity">
 
                     </div>
+                    <Footer />
                 </div>
             </div>
         );

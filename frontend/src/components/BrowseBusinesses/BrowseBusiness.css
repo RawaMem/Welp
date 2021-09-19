@@ -6,6 +6,7 @@
 
 
 .searchbar-container {
+    
     background-image: url(https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_large_assets/65e6a224ada4/assets/img/home/hero_photos/cz8iYo13MpBBGlFLlkA8Sw.jpg);
     height: 570px;
 }
@@ -62,9 +63,41 @@
 
 .card-text {
     margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .location-cities {
+    text-align: center;
+}
+
+.location-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
     color: rgb(211, 35, 35);
     font-size: 21px;
+    font-weight: 700;
+
+}
+
+
+
+.cities {
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 30px;
+    color: rgb(102, 102, 102);
+    border-bottom: 1px solid rgb(102, 102, 102);
+
+}
+
+.cities-name {
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.cities-name:hover {
+    color: rgb(211, 35, 35);
+
 }
