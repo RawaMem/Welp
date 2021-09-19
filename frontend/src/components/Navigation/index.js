@@ -15,20 +15,27 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <div className="login-btn-container">
+          <NavLink className='login-btn' to="/login">Log In</NavLink>
+          <NavLink className='signup-btn' to="/signup">Sign Up</NavLink>
+        </div>
       </>
     );
   }
 
   return (
-    
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <div className="nav-businesspage">
+      <div className="nav-container">
+        <div className="home-btn-container">
+          <NavLink className='home-btn' exact to="/"><img src="https://www.adweek.com/wp-content/uploads/2021/08/YelpLogoAugust2021.jpg.webp" alt="logo" className="yelp-logo" /></NavLink>
+        </div>
+        <div className="search-bar-container">
+          <input type="search" placeholder="tacos, cheap dinner, Max's" className='search-bar-style'/>
+          <button className="search-btn">search</button>
+        </div>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 
