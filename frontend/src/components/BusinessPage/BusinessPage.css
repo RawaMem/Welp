@@ -2,6 +2,10 @@
     display: none;
 }
 
+.page-container {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .img-encapsule {
     height: 426px;
     width: 100vw;
@@ -23,8 +27,11 @@
     font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
     font-size: 30px;
     font-weight: 700;
+}
 
-
+.r-container {
+    width: 747px;
+    margin: 20px 0px;
 }
 
 .edit-btn {
@@ -80,7 +87,7 @@
     transition: 0.5s;
 }
 
-.add-review-button:hover {
+.red-hover-effect:hover {
     background-color: rgb(218, 52, 52);
     border: 1px solid rgb(218, 52, 52);
 }

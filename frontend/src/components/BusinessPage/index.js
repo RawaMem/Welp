@@ -67,66 +67,68 @@ export const BusinessPage = () => {
     return(
         <>
             <div className="page-container">
-                <div className="business-details">
-                    <div className="img-encapsule">
-                        <img className="bp-image" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
+                <div className="detail-container">
+                    <div className="business-details">
+                        <div className="img-encapsule">
+                            <img className="bp-image" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
+                        </div>
+                            <div className="bp-title">{currentBusiness?.title}</div>
+                        <div className="b-description">{currentBusiness?.description}</div>
+                        <div className="b-location">{`${currentBusiness?.city}, ${currentBusiness?.state}`}</div>
                     </div>
-                        <div className="bp-title">{currentBusiness?.title}</div>
-                    <div className="b-description">{currentBusiness?.description}</div>
-                    <div className="b-location">{`${currentBusiness?.city}, ${currentBusiness?.state}`}</div>
                 </div>
-            </div>
 
-            <div className="user-business-options">
-            {!userReview && userId &&
-            (<Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
-                <button className="add-review-button">Write A Review</button>
-            </Link>)
-            }
-                <Link to={`/businesses/${currentBusiness?.id}/edit`}>
-                    <button className="edit-btn">Edit Business</button>
-                </Link>
-                <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
-            </div>
+                <div className="user-business-options">
+                {!userReview && userId &&
+                (<Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
+                    <button className="add-review-button red-hover-effect">Write A Review</button>
+                </Link>)
+                }
+                    <Link to={`/businesses/${currentBusiness?.id}/edit`}>
+                        <button className="edit-btn red-hover-effect">Edit Business</button>
+                    </Link>
+                    <button className="delete-btn red-hover-effect" onClick={deleteThisBusiness}>Delete Business</button>
+                </div>
 
-            {/* <div className="user-review">
-            {reviewList.map(review => {
-                    return (
-                        +review?.businessId === +businessId && +review?.userId === +userId ? (
-                        <>
-                            <div className="r-container">
-                                <div className="rating"><p>{review.rating}</p></div>
-                                <div className="content"><p>{review.content}</p></div>
-                            </div>
-                        </>
-                        ) : false
-                    )
-                })}
-                note: this code
-            </div> */}
-
-            <div className="review-container">
+                {/* <div className="user-review">
                 {reviewList.map(review => {
-                    return (
-                        +review?.businessId === +businessId ? (
-                        <>
-                            <div className="r-container">
-                                <div className="rating"><p>{review.rating}</p></div>
-                                <div className="content"><p>{review.content}</p></div>
-                            </div>
-                            {userId && userId === review?.userId &&
-                            (<Link to={`/businesses/${businessId}/reviews/${review?.id}/edit`}>
-                                <button value={review.id} className="review-edit">Edit</button>
-                            </Link>)
-                            }
-                            {userId && userId === review?.userId &&
-                             (<button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>)
-                            }
-                        </>
-                        ) : false
+                        return (
+                            +review?.businessId === +businessId && +review?.userId === +userId ? (
+                            <>
+                                <div className="r-container">
+                                    <div className="rating"><p>{review.rating}</p></div>
+                                    <div className="content"><p>{review.content}</p></div>
+                                </div>
+                            </>
+                            ) : false
+                        )
+                    })}
+                    note: this code
+                </div> */}
 
-                    )
-                })}
+                <div className="review-container">
+                    {reviewList.map(review => {
+                        return (
+                            +review?.businessId === +businessId ? (
+                            <>
+                                <div className="r-container">
+                                    <div className="rating"><p>{review.rating}</p></div>
+                                    <div className="content"><p>{review.content}</p></div>
+                                </div>
+                                {userId && userId === review?.userId &&
+                                (<Link to={`/businesses/${businessId}/reviews/${review?.id}/edit`}>
+                                    <button value={review.id} className="review-edit">Edit</button>
+                                </Link>)
+                                }
+                                {userId && userId === review?.userId &&
+                                (<button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>)
+                                }
+                            </>
+                            ) : false
+
+                        )
+                    })}
+                </div>
             </div>
 
         </>
