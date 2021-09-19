@@ -4,6 +4,7 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { deleteBusiness, getOneBusiness, listOfAllBusinesses } from '../../store/businesses';
 import { allReviewsForBusiness, deleteUserReview } from '../../store/reviews';
 import { BrowseBusinesses } from '../BrowseBusinesses';
+import { Footer } from '../Footer';
 import './BusinessPage.css';
 
 
@@ -125,10 +126,10 @@ export const BusinessPage = () => {
                                 }
                             </>
                             ) : false
-
                         )
                     })}
                 </div>
+                <Footer />
             </div>
 
         </>

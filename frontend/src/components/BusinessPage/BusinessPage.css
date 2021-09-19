@@ -69,8 +69,6 @@
 
 }
 
-
-
 .add-review-button {
     height: 40px;
     width: 200px;
@@ -90,4 +88,9 @@
 .red-hover-effect:hover {
     background-color: rgb(218, 52, 52);
     border: 1px solid rgb(218, 52, 52);
+}
+
+.profile-btn {
+    height: 40px;
+    width: 40px;
 }
