@@ -68,24 +68,26 @@ export const BusinessPage = () => {
         <>
             <div className="page-container">
                 <div className="business-details">
-                    <img className="b-img" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
-                    <div className="b-title">{currentBusiness?.title}</div>
+                    <div className="img-encapsule">
+                        <img className="bp-image" src={currentBusiness?.imgUrl} alt='currentBusiness'/>
+                    </div>
+                        <div className="bp-title">{currentBusiness?.title}</div>
                     <div className="b-description">{currentBusiness?.description}</div>
                     <div className="b-location">{`${currentBusiness?.city}, ${currentBusiness?.state}`}</div>
                 </div>
             </div>
 
             <div className="user-business-options">
+            {!userReview && userId &&
+            (<Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
+                <button className="add-review-button">Write A Review</button>
+            </Link>)
+            }
                 <Link to={`/businesses/${currentBusiness?.id}/edit`}>
                     <button className="edit-btn">Edit Business</button>
                 </Link>
                 <button className="delete-btn" onClick={deleteThisBusiness}>Delete Business</button>
             </div>
-            {!userReview && userId &&
-            (<Link className={hideMe} to={`/businesses/${currentBusiness?.id}/reviews/new`}>
-                <button className="add-review-button">Add Review</button>
-            </Link>)
-            }
 
             {/* <div className="user-review">
             {reviewList.map(review => {

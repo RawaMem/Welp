@@ -75,6 +75,10 @@
 }
 
 .search-btn {
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: white;
+
+    font-weight: 500;
     height: 40px;
     width: 60px;
     border: none;
