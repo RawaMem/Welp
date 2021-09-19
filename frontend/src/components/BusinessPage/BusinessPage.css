@@ -48,6 +48,49 @@
     text-decoration: none;
     margin-left: 20px;
     transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+
+.review-edit {
+    height: 30px;
+    width: 60px;
+    background-color: rgb(244, 57, 57);
+    border: 1px solid rgb(244, 57, 57);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.5s;
+    margin-right: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+.review-delete {
+    height: 30px;
+    width: 60px;
+    background-color: rgb(244, 57, 57);
+    border: 1px solid rgb(244, 57, 57);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.5s;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
 }
 
@@ -66,6 +109,8 @@
     text-decoration: none;
     margin-left: 20px;
     transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
 }
 
@@ -83,6 +128,8 @@
     text-decoration: none;
     margin-left: 20px;
     transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .red-hover-effect:hover {

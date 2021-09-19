@@ -118,11 +118,11 @@ export const BusinessPage = () => {
                                 </div>
                                 {userId && userId === review?.userId &&
                                 (<Link to={`/businesses/${businessId}/reviews/${review?.id}/edit`}>
-                                    <button value={review.id} className="review-edit">Edit</button>
+                                    <button value={review.id} className="review-edit red-hover-effect">Edit</button>
                                 </Link>)
                                 }
                                 {userId && userId === review?.userId &&
-                                (<button value={review.id} className="review-delete" onClick={deleteThisReview}>Delete</button>)
+                                (<button value={review.id} className="review-delete red-hover-effect" onClick={deleteThisReview}>Delete</button>)
                                 }
                             </>
                             ) : false
