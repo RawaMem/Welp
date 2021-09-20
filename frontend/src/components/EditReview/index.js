@@ -31,7 +31,6 @@ export const EditReview = () => {
 
     useEffect(() => {
         dispatch(listOfAllBusinesses())
-        // dispatch(allReviewsForBusiness())
     }, [dispatch]);
 
 

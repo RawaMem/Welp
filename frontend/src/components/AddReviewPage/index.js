@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { createReview } from '../../store/reviews';
 import { Footer } from '../Footer';
 import '../EditReview/EditReview.css';
+import { listOfAllBusinesses } from '../../store/businesses';
 
 
 export const AddReviewPage = () => {
@@ -19,6 +20,17 @@ export const AddReviewPage = () => {
     const [rating, setRating] = useState('');
     const [content, setContent] = useState('');
 
+    const AllBusiness = useSelector(state => {
+        return state.businesses.list
+    });
+
+    const currentBusiness = AllBusiness.find(business => {
+        return +businessId === business.id
+    })
+
+    useEffect(() => {
+        dispatch(listOfAllBusinesses())
+    }, [dispatch]);
 
     const updateRating = (e) => setRating(e.target.value);
     const updateContent = (e) => setContent(e.target.value);
@@ -40,6 +52,7 @@ export const AddReviewPage = () => {
 
       return (
         <section className="form">
+            <h2 className="review-business-title">{currentBusiness?.title}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="r-box-form">
                     <input
