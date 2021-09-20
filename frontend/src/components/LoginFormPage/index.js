@@ -40,9 +40,9 @@ function LoginFormPage() {
       <div className='signup-page-container'>
         <div className="left-side">
           <div className='left-container'>
-            <h2 className='signup-h2'>Log in to Welp</h2>
+            <h2 className='signup-h2'>Log in to Yelp</h2>
             <p className='signup-subheading'>New to Yelp? Sign up</p>
-            <p className='signup-legal'>By logging in, you agree to Welp’s <a className='in-text-link'>Terms of Service</a> and <a className='in-text-link'>Privacy Policy.</a></p>
+            <p className='signup-legal'>By logging in, you agree to Yelp’s <a className='in-text-link'>Terms of Service</a> and <a className='in-text-link'>Privacy Policy.</a></p>
             <button type="submit" disabled='true' className='disabled-btn facebook'>Continue with Facebook</button>
             <button type="submit" disabled='true' className='disabled-btn google'>Continue with Google</button>
             <button type="submit" disabled='true' className='disabled-btn apple'>Continue with Apple</button>
@@ -76,7 +76,7 @@ function LoginFormPage() {
 
               <button className='user-login-btn' type="submit">Log In</button>
               <button className='user-login-btn' type="submit" onClick={handleDemo}>Demo User</button>
-              <p className='bottom-text'>New to Welp? <a className='in-text-link'>Sign up</a></p>
+              <p className='bottom-text'>New to Yelp? <a className='in-text-link'>Sign up</a></p>
             </form>
           </div>
 

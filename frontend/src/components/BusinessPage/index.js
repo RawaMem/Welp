@@ -47,10 +47,7 @@ export const BusinessPage = () => {
     const businessReviews = reviewList?.filter(review => review.businessId === +businessId)
 
     const [userReview] = businessReviews?.filter(review => review?.userId === +userId);
-    console.log('=========>', businessReviews);
-    console.log('=========>', userReview);
-
-
+    
     const deleteThisBusiness = (e) => {
         e.preventDefault();
         dispatch(deleteBusiness(businessId));

@@ -47,7 +47,6 @@ export const AddBusinessForm = () => {
         };
 
         let createdBusiness = await dispatch(createBusiness(payload))
-        console.log(createdBusiness);
         if (createdBusiness) {
           history.push(`/businesses/${createdBusiness.id}`);
         }
@@ -78,15 +77,15 @@ export const AddBusinessForm = () => {
           <select onChange={updateCategory}
           className='edit-business-input'>
             <option value="" disabled selected>Category of Business</option>
-            <option>'Restaurant'</option>
-            <option>'Shopping'</option>
-            <option>'Pets'</option>
-            <option>'Health'</option>
-            <option>'Hotel and Travel'</option>
-            <option>'Financial Services'</option>
-            <option>'Automotive'</option>
-            <option>'Beauty and Spas'</option>
-            <option>'Home Services'</option>
+            <option>Restaurant</option>
+            <option>Shopping</option>
+            <option>Pets</option>
+            <option>Health</option>
+            <option>Hotel and Travel</option>
+            <option>Financial Services</option>
+            <option>Automotive</option>
+            <option>Beauty and Spas</option>
+            <option>Home Services</option>
         </select>
         <input
           type="text"

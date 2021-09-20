@@ -52,8 +52,6 @@ router.put('/edit/:reviewId(\\d+)', asyncHandler(async function(req, res) {
     } = req.body
     const reviewToEdit = await Review.findByPk(reviewId);
 
-    console.log('=========>', reviewToEdit)
-
     await reviewToEdit.update({
         id: reviewId,
         userId: userId,
@@ -64,7 +62,6 @@ router.put('/edit/:reviewId(\\d+)', asyncHandler(async function(req, res) {
 
     const newReview = await Review.findByPk(reviewId);
 
-    console.log('=========>UPDATED', newReview)
     // return res.redirect(`/api/businesses/${updatedBusiness.id}`)
 
     res.json(newReview);
