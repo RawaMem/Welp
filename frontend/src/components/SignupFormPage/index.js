@@ -37,9 +37,9 @@ function SignupFormPage() {
       <div className='signup-page-container'>
         <div className="left-side">
           <div className='left-container'>
-            <h2 className='signup-h2'>Sign Up for Welp</h2>
+            <h2 className='signup-h2'>Sign Up for Yelp</h2>
             <p className='signup-subheading'>Connect with great local businesses</p>
-            <p className='signup-legal'>By continuing, you agree to Welp’s <a className='in-text-link'>Terms of Service</a> and acknowledge Yelp’s <a className='in-text-link'>Privacy Policy.</a></p>
+            <p className='signup-legal'>By continuing, you agree to Yelp’s <a className='in-text-link'>Terms of Service</a> and acknowledge Yelp’s <a className='in-text-link'>Privacy Policy.</a></p>
             <button type="submit" disabled='true' className='disabled-btn facebook'>Continue with Facebook</button>
             <button type="submit" disabled='true' className='disabled-btn google'>Continue with Google</button>
             <button type="submit" disabled='true' className='disabled-btn apple'>Continue with Apple</button>
@@ -85,7 +85,7 @@ function SignupFormPage() {
                   placeholder='Confirm Password'
                 />
               <button type="submit" className='front-signup-btn'>Sign Up</button>
-              <p className='bottom-text'>Already on Welp? <a className='in-text-link'>Log in</a></p>
+              <p className='bottom-text'>Already on Yelp? <a className='in-text-link'>Log in</a></p>
             </form>
           </div>
 

@@ -20,29 +20,15 @@ export const BrowseBusinesses = () => {
 
         return(
             <div className="browse-business-container">
-                <div className="searchbar-container">
-                    <div className="nav-bar">
-
-                    </div>
-                    <div className="logo">
-
-                    </div>
-                    <div className="searchbar">
-
-                    </div>
-                    <div className="categories">
-
-                    </div>
-                    <div className="photo-credit">
-
-                    </div>
+                <div className="bb-img-container">
+                    <img src="https://images.unsplash.com/photo-1485686531765-ba63b07845a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2900&q=80" alt="food" className="bb-img" />
                 </div>
                 <div className="best-businesses-container">
 
                 </div>
                 <div className="main-body">
                     <div className="location-cities">
-                        <h2 className="location-title">Welp Newport Beach</h2>
+                        <h2 className="location-title">Yelp Newport Beach</h2>
                         <div className="cities">
                             <p className="cities-name">Irvine</p>
                             <p className="cities-name">Austin</p>

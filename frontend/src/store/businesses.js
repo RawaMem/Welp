@@ -105,7 +105,6 @@ const businessReducer = (state = initialState, action) => {
         case GET_ONE_BUSINESS: {
             newState = {...state}
             newState.currentBusiness = action.details
-            console.log('=========>', newState);
             return newState
         }
         case EDIT_BUSINESS: {

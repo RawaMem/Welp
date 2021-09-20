@@ -12,7 +12,6 @@ export const EditBusinessFrom = () => {
     const currentBusiness = useSelector(state => {
         return state.businesses.currentBusiness
     });
-    console.log(currentBusiness)
 
     const userId = useSelector(state => {
         return state.session.user.id
@@ -60,7 +59,7 @@ export const EditBusinessFrom = () => {
         };
 
         let editedBusiness = await dispatch(editBusinessDetails(payload))
-        console.log(editedBusiness);
+        
         if (editedBusiness) {
           history.push(`/businesses/${editedBusiness.id}`);
         }

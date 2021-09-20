@@ -71,7 +71,7 @@ router.post('/:userId(\\d+)/businesses/:businessId(\\d+)/reviews', asyncHandler(
     rating,
     content
   })
-  //console.log newReview to see what it is
+
 
   return res.json(newReview)
 }));
@@ -92,7 +92,6 @@ router.patch('/:userId(\\d+)/businesses/:businessId(\\d+)/reviews/:reviewId(\\d+
   }
 
   const updatedReview = await oldReview.update(newReviewDetails)
-  //console.log newReview to see what it is
 
   return res.json(updatedReview)
 }));
@@ -107,7 +106,6 @@ router.delete('/:userId(\\d+)/businesses/:businessId(\\d+)/reviews/:reviewId(\\d
   await review.destroy();
 
   const updatedReview = await oldReview.update(newReviewDetails)
-  //console.log newReview to see what it is
 
   return res.json(reviewId)
 }));

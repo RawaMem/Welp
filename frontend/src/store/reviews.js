@@ -111,7 +111,6 @@ const reviewReducer = (state = initialState, action) => {
             newState = {...state}
             newState.list.
             newState.currentReview = action.details
-            console.log('=========>', newState);
             return newState
         }
         case EDIT_REVIEW: {

@@ -43,13 +43,17 @@ export const BusinessPage = () => {
     }, [dispatch, businessId]);
 
 
-
     const businessReviews = reviewList?.filter(review => review.businessId === +businessId)
 
-    const [userReview] = businessReviews?.filter(review => review?.userId === +userId);
-    console.log('=========>', businessReviews);
-    console.log('=========>', userReview);
 
+
+    let reviewSum = 0;
+    businessReviews?.forEach(review => {
+        reviewSum = reviewSum + review.rating
+    });
+    let aveRating = Math.round((reviewSum / businessReviews?.length) *10) /10
+
+    const [userReview] = businessReviews?.filter(review => review?.userId === +userId);
 
     const deleteThisBusiness = (e) => {
         e.preventDefault();
@@ -74,6 +78,8 @@ export const BusinessPage = () => {
                 <div className="detail-container">
                     <div className="business-details">
                         <div className="bp-title">{currentBusiness?.title}</div>
+                        {!Number.isNaN(aveRating) && (
+                        <div className="bp-rating">Average Rating: <span className='review-rating-number'>{aveRating}</span></div>)}
                         <div className="b-category">{currentBusiness?.category}</div>
                         <div className="b-description">{currentBusiness?.description}</div>
                         <div className="b-location">{`${currentBusiness?.address}, ${currentBusiness?.city}, ${currentBusiness?.state} ${currentBusiness?.zipCode}`}</div>
@@ -102,7 +108,8 @@ export const BusinessPage = () => {
                                 +review?.businessId === +businessId ? (
                                     <>
                                     <div className="r-container">
-                                        <div className="rating"><p>Rating: {review.rating}</p></div>
+                                        <div className="review-username"><p>{review?.User?.username}</p></div>
+                                        <div className="rating"><p>Rating: <span className='review-rating-number'>{review.rating}</span></p></div>
                                         <div className="content"><p>{review.content}</p></div>
                                         {userId && userId === review?.userId &&
                                         (<Link to={`/businesses/${businessId}/reviews/${review?.id}/edit`}>

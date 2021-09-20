@@ -38,6 +38,8 @@
 
 .b-location {
     margin-bottom: 10px;
+    font-size: 14px;
+
 }
 
 .r-container {
@@ -175,4 +177,21 @@
 
 .b-category {
     margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.bp-rating {
+    margin-bottom: 10px;
+}
+
+.review-username {
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: rgb(0, 115, 187);
+
+}
+
+.review-rating-number {
+    font-weight: 600;
+    color: rgb(0, 115, 187);
 }

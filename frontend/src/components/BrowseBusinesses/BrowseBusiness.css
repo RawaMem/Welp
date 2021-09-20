@@ -4,11 +4,29 @@
     box-sizing: border-box;
 }
 
+.bb-img-container {
+    height: 426px;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.bb-img {
+    width: 100vw;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
 
 .searchbar-container {
 
-    background-image: url(https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_large_assets/65e6a224ada4/assets/img/home/hero_photos/cz8iYo13MpBBGlFLlkA8Sw.jpg);
-    height: 570px;
+    background-image: url(https://images.unsplash.com/photo-1485686531765-ba63b07845a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2900&q=80);
+    height: 400px;
 }
 
 .main-body {
@@ -30,7 +48,7 @@
     border: 1px solid rgb(230, 230, 230);
     margin: 20px 40px;
     border-radius: 4px;
-
+    transition: 0.2s;
 }
 
 .business-card:hover {
@@ -49,7 +67,9 @@
 .new-businesses {
     display: flex;
     justify-content: center;
-    margin: 20px 40px;
+    margin: 20px 0px;
+    width: 100vw;
+    flex-wrap: wrap;
 
 }
 
@@ -79,8 +99,6 @@
     font-weight: 700;
 
 }
-
-
 
 .cities {
     display: flex;

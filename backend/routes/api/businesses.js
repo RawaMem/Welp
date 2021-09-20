@@ -47,8 +47,6 @@ router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
     } = req.body
     const businessToEdit = await Business.findByPk(id);
 
-    console.log('=========>', businessToEdit)
-
     await businessToEdit.update({
         id: id,
         ownerId: ownerId,
@@ -64,7 +62,6 @@ router.put('/:businessId(\\d+)', asyncHandler(async function(req, res) {
 
     const newBusiness = await Business.findByPk(id);
 
-    console.log('=========>UPDATED', newBusiness)
     // return res.redirect(`/api/businesses/${updatedBusiness.id}`)
 
     res.json(newBusiness);
