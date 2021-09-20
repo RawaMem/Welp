@@ -4,7 +4,7 @@
     height: 400px;
     width: 600px;
     padding: 5px 9px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: 1px solid rgb(218, 210, 210);
     border-radius: 4px;
@@ -40,7 +40,7 @@
     border-radius: 3px;
     font-weight: 700;
     transition: 0.5s;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -48,4 +48,13 @@
 .r-box-btn:hover {
     background-color: rgb(218, 52, 52);
     border: 1px solid rgb(218, 52, 52);
+}
+
+.review-business-title {
+    margin-bottom: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(0, 115, 187);
+    position: relative;
+    right: 175px;
+    font-size: 30px;
 }
