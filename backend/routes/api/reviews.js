@@ -11,7 +11,11 @@ const router = express.Router();
 
 //get all reviews for a business
 router.get('/', asyncHandler(async function(req, res) {
-    const reviewList = await Review.findAll()
+    const reviewList = await Review.findAll({
+        include: {
+            model: User
+        }
+    })
     return res.json(reviewList)
 }));
 
