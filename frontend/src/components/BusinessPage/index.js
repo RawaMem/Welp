@@ -43,11 +43,19 @@ export const BusinessPage = () => {
     }, [dispatch, businessId]);
 
 
-
     const businessReviews = reviewList?.filter(review => review.businessId === +businessId)
 
+    let reviewSum = 0;
+    businessReviews?.forEach(review => {
+        console.log('=======>', review?.rating)
+        reviewSum = reviewSum + review.rating
+    });
+    let aveRating = Math.round((reviewSum / businessReviews?.length) *10) /10
+
+    console.log('=======>', businessReviews.length, aveRating)
+
     const [userReview] = businessReviews?.filter(review => review?.userId === +userId);
-    
+
     const deleteThisBusiness = (e) => {
         e.preventDefault();
         dispatch(deleteBusiness(businessId));
@@ -71,6 +79,7 @@ export const BusinessPage = () => {
                 <div className="detail-container">
                     <div className="business-details">
                         <div className="bp-title">{currentBusiness?.title}</div>
+                        <div className="bp-rating">Average Rating: {aveRating}</div>
                         <div className="b-category">{currentBusiness?.category}</div>
                         <div className="b-description">{currentBusiness?.description}</div>
                         <div className="b-location">{`${currentBusiness?.address}, ${currentBusiness?.city}, ${currentBusiness?.state} ${currentBusiness?.zipCode}`}</div>
