@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createBusiness } from '../../store/businesses';
-
+import { Footer } from '../Footer';
+import '../EditBusinessForm/EditBusiness.css'
 
 export const AddBusinessForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
     const userId = useSelector(state => {
-        return state.session.user.id
+      return state.session.user.id
     });
-    //git folder fix
+
     const [ownerId, setOwnerId] = useState(userId);
     const [title, setTitle] = useState('');
     const [imgUrl, setImgUrl] = useState('');
@@ -52,76 +52,76 @@ export const AddBusinessForm = () => {
           history.push(`/businesses/${createdBusiness.id}`);
         }
       };
+  return (
+    <div className="form-container">
+      <form className='form' onSubmit={handleSubmit}>
+        <input
+          type="hidden"
+          min="1"
+          required
+          value={userId}
+          />
+        <input
+          type="text"
+          placeholder="Business Name"
+          required
+          value={title}
+          onChange={updateTitle}
+          className='edit-business-input'/>
+        <input
+          type="text"
+          placeholder="Image URL"
+          required
+          value={imgUrl}
+          onChange={updateImgUrl}
+          className='edit-business-input' />
+          <select onChange={updateCategory}
+          className='edit-business-input'>
+            <option value="" disabled selected>Category of Business</option>
+            <option>'Restaurant'</option>
+            <option>'Shopping'</option>
+            <option>'Pets'</option>
+            <option>'Health'</option>
+            <option>'Hotel and Travel'</option>
+            <option>'Financial Services'</option>
+            <option>'Automotive'</option>
+            <option>'Beauty and Spas'</option>
+            <option>'Home Services'</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Business Description"
+          value={description}
+          onChange={updateDescription}
+          className='edit-business-input' />
+        <input
+          type="text"
+          placeholder="Street Address"
+          value={address}
+          onChange={updateAddress}
+          className='edit-business-input' />
+        <input
+          type="text"
+          placeholder="City"
+          value={city}
+          onChange={updateCity}
+          className='edit-business-input' />
+        <input
+          type="text"
+          placeholder="State"
+          value={state}
+          onChange={updateState}
+          className='edit-business-input' />
+        <input
+          type="text"
+          placeholder="Zip Code"
+          value={zipCode}
+          onChange={updateZipCode}
+          className='edit-business-input' />
 
-      const handleCancelClick = (e) => {
-        e.preventDefault();
-      };
-
-
-    return (
-        <section className="form">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="hidden"
-              min="1"
-              required
-              value={userId}
-              />
-            <input
-              type="text"
-              placeholder="Business Name"
-              required
-              value={title}
-              onChange={updateTitle}/>
-            <input
-              type="text"
-              placeholder="Image URL"
-              required
-              value={imgUrl}
-              onChange={updateImgUrl} />
-              <select onChange={updateCategory}>
-                <option value="" disabled selected>Category of Business</option>
-                <option>'Restaurant'</option>
-                <option>'Shopping'</option>
-                <option>'Pets'</option>
-                <option>'Health'</option>
-                <option>'Hotel and Travel'</option>
-                <option>'Financial Services'</option>
-                <option>'Automotive'</option>
-                <option>'Beauty and Spas'</option>
-                <option>'Home Services'</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Business Description"
-              value={description}
-              onChange={updateDescription} />
-            <input
-              type="text"
-              placeholder="Street Address"
-              value={address}
-              onChange={updateAddress} />
-            <input
-              type="text"
-              placeholder="City"
-              value={city}
-              onChange={updateCity} />
-            <input
-              type="text"
-              placeholder="State"
-              value={state}
-              onChange={updateState} />
-            <input
-              type="text"
-              placeholder="Zip Code"
-              value={zipCode}
-              onChange={updateZipCode} />
-
-            <button type="submit">Add A Business</button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
-          </form>
-        </section>
-      );
-
-
+        <button className='edit-business-btn' type="submit">Add Business</button>
+      </form>
+      <Footer />
+    </div>
+  );
 }

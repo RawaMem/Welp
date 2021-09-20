@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editBusinessDetails, getOneBusiness } from '../../store/businesses';
+import { Footer } from '../Footer';
+import './EditBusiness.css'
 
 export const EditBusinessFrom = () => {
     const dispatch = useDispatch();
@@ -64,15 +66,15 @@ export const EditBusinessFrom = () => {
         }
       };
 
-      const handleCancelClick = (e) => {
-        e.preventDefault();
-      };
+      // const handleCancelClick = (e) => {
+      //   e.preventDefault();
+      // };
 
 
 
       return (
-        <section className="form">
-          <form onSubmit={handleSubmit}>
+        <section className="form-container">
+          <form className='form' onSubmit={handleSubmit}>
             <input
               type="hidden"
               min="1"
@@ -84,54 +86,62 @@ export const EditBusinessFrom = () => {
               placeholder="Business Name"
               required
               value={title}
-              onChange={updateTitle}/>
+              onChange={updateTitle}
+              className='edit-business-input'/>
             <input
               type="text"
               placeholder="Image URL"
               required
               value={imgUrl}
-              onChange={updateImgUrl} />
-              <select onChange={updateCategory}>
+              onChange={updateImgUrl}
+              className='edit-business-input' />
+              <select onChange={updateCategory}
+              className='edit-business-input'>
                 <option value="" disabled selected>Category of Business</option>
-                <option>'Restaurant'</option>
-                <option>'Shopping'</option>
-                <option>'Pets'</option>
-                <option>'Health'</option>
-                <option>'Hotel and Travel'</option>
-                <option>'Financial Services'</option>
-                <option>'Automotive'</option>
-                <option>'Beauty and Spas'</option>
-                <option>'Home Services'</option>
+                <option>Restaurant</option>
+                <option>Shopping</option>
+                <option>Pets</option>
+                <option>Health</option>
+                <option>Hotel and Travel</option>
+                <option>Financial Services</option>
+                <option>Automotive</option>
+                <option>Beauty and Spas</option>
+                <option>Home Services</option>
             </select>
             <input
               type="text"
               placeholder="Business Description"
               value={description}
-              onChange={updateDescription} />
+              onChange={updateDescription}
+              className='edit-business-input' />
             <input
               type="text"
               placeholder="Street Address"
               value={address}
-              onChange={updateAddress} />
+              onChange={updateAddress}
+              className='edit-business-input' />
             <input
               type="text"
               placeholder="City"
               value={city}
-              onChange={updateCity} />
+              onChange={updateCity}
+              className='edit-business-input' />
             <input
               type="text"
               placeholder="State"
               value={state}
-              onChange={updateState} />
+              onChange={updateState}
+              className='edit-business-input' />
             <input
               type="text"
               placeholder="Zip Code"
               value={zipCode}
-              onChange={updateZipCode} />
+              onChange={updateZipCode}
+              className='edit-business-input' />
 
-            <button type="submit">Edit Business</button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
+            <button className='edit-business-btn' type="submit">Edit Business</button>
           </form>
+          <Footer />
         </section>
-      );;
+      );
 }

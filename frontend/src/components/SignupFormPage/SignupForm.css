@@ -25,17 +25,26 @@
     width: 495px;
 }
 
-.signup-btn {
+.front-signup-btn {
     box-sizing: border-box;
     height: 41px;
     width: 300px;
-    background-color: rgb(211, 35, 35);
-    border: 1px solid rgb(211, 35, 35);
+    background-color: rgb(244, 57, 57);
+    border: 1px solid rgb(244, 57, 57);
     font-size: 16px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: white;
     border-radius: 3px;
     font-weight: 700;
+    transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 10px;
+
+}
+
+.front-signup-btn:hover {
+    background-color: rgb(218, 52, 52);
+    border: 1px solid rgb(218, 52, 52);
 }
 
 .signup-page-container {
@@ -49,14 +58,14 @@
 .signup-img {
     height: 342px;
     width: 382px;
-    margin-top: 75px;
+    margin-top: 200px;
 }
 
 .signup-input {
     height: 30px;
     width: 300px;
     padding: 5px 9px;
-    margin-bottom: 9px;
+    margin-bottom: 15px;
 
 }
 
@@ -70,6 +79,8 @@
     border-radius: 3px;
     font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
 }
 
@@ -88,7 +99,7 @@
 
 .apple {
     background-color: black;
-    margin-bottom: 1px;
+    margin-bottom: 25px;
     border: 1px solid black);
 }
 
@@ -97,11 +108,15 @@
     font-size: 22px;
     font-weight: 700;
     line-height: 17.99px;
+    margin-bottom: 15px;
+
 }
 
 .signup-subheading {
     font-size: 14px;
     font-weight: 700;
+    margin-bottom: 10px;
+
 }
 
 .signup-legal {

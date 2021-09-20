@@ -84,7 +84,7 @@ function SignupFormPage() {
                   required
                   placeholder='Confirm Password'
                 />
-              <button type="submit" className='signup-btn'>Sign Up</button>
+              <button type="submit" className='front-signup-btn'>Sign Up</button>
               <p className='bottom-text'>Already on Welp? <a className='in-text-link'>Log in</a></p>
             </form>
           </div>
