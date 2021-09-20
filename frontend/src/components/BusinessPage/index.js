@@ -74,8 +74,9 @@ export const BusinessPage = () => {
                 <div className="detail-container">
                     <div className="business-details">
                         <div className="bp-title">{currentBusiness?.title}</div>
+                        <div className="b-category">{currentBusiness?.category}</div>
                         <div className="b-description">{currentBusiness?.description}</div>
-                        <div className="b-location">{`${currentBusiness?.city}, ${currentBusiness?.state}`}</div>
+                        <div className="b-location">{`${currentBusiness?.address}, ${currentBusiness?.city}, ${currentBusiness?.state} ${currentBusiness?.zipCode}`}</div>
                     </div>
 
                     <div className="user-business-options">
@@ -84,11 +85,14 @@ export const BusinessPage = () => {
                         <button className="add-review-button red-hover-effect">Write A Review</button>
                     </Link>)
                     }
-                    
+                    {userId && userId === currentBusiness?.ownerId && (
+                        <>
                         <Link to={`/businesses/${currentBusiness?.id}/edit`}>
                             <button className="edit-btn red-hover-effect">Edit Business</button>
                         </Link>
                         <button className="delete-btn red-hover-effect" onClick={deleteThisBusiness}>Delete Business</button>
+                        </>
+                        )}
                     </div>
 
 

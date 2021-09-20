@@ -29,6 +29,7 @@
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 20px;
+    color: rgb(0, 115, 187);
 }
 
 .b-description {
@@ -170,4 +171,8 @@
 
 .content {
     margin-bottom: 7px;
+}
+
+.b-category {
+    margin-bottom: 10px;
 }
