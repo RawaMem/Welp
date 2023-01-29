@@ -1,5 +1,12 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
+options.tableName = 'Reviews'
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -8,7 +15,7 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkInsert('Reviews', [
+   return queryInterface.bulkInsert(options, [
      {userId: 1, businessId: 1, rating: 2, content: 'This place was very clean and organized. The employees are very helpful and welcoming. They have a great variety of food and it is all very tasty. The service was great and experience was an overall 10/10. I definitely recommend.', createdAt: new Date(), updatedAt: new Date()},
      {userId: 2, businessId: 1, rating: 3, content: 'This place was incredible. Amazing food and fantastic service. They have indoor and outdoor dinning with very comfortable chairs. Definitely recommend coming here!!!', createdAt: new Date(), updatedAt: new Date()},
      {userId: 3, businessId: 1, rating: 4, content: 'This Place was amazing we would definitely go back anytime. Carlo, our server, was absolutely FANTASTIC!! He is a top 10 server, loved him. The food was amazing, the setting is beautiful, we had an amazing time!', createdAt: new Date(), updatedAt: new Date()},
@@ -110,6 +117,6 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkDelete('Reviews', null, { truncate: true, cascade: true, restartIdentity: true });
+      return queryInterface.bulkDelete(options, null, { truncate: true, cascade: true, restartIdentity: true });
   }
 };

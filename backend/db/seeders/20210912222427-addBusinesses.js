@@ -1,5 +1,12 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
+options.tableName = 'Businesses'
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -8,7 +15,7 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkInsert('Businesses', [
+   return queryInterface.bulkInsert(options, [
      {ownerId: 1, title: 'The Lighthouse Cafe', imgUrl: 'https://s3-media0.fl.yelpcdn.com/bphoto/HnhXCqxu9rPBvoTN-o0a0g/o.jpg', category: 'Restaurant', description: 'Waterfront dining on Newport Harbor. Located on the Balboa Peninsula featuring daily brunch and dinner options. Rooftop deck with stunning views of the bay and a patio just a few feet from the sand. We offer a full bar and have a great selection of beers and wines. We only accept Yelp waitlist and walk-ins during weekend brunch, we cannot accommodate reservations between 9am and 4pm Saturday and Sunday.', address: '1600 W Balboa Blvd', city: 'Newport Beach', state: 'CA', zipCode: '92663', lat: 0.0, lng: 0.0, createdAt: new Date(), updatedAt: new Date()},
      {ownerId: 2, title: 'Poached Kitchen', imgUrl: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2900&q=80', category: 'Restaurant', description: 'Now open and happy to serve you in beautiful Irvine CA', address: '12395 Harvard Ave', city: 'Irvine', state: 'CA', zipCode: '92774', lat: 0.0, lng: 0.0, createdAt: new Date(), updatedAt: new Date()},
      {ownerId: 3, title: 'Chicken Maison', imgUrl: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2900&q=80', category: 'Restaurant', description: 'Now open and happy to serve you in beautiful Irvine CA', address: '16595 Bolsa Ave', city: 'Westminster', state: 'CA', zipCode: '92334', lat: 0.0, lng: 0.0, createdAt: new Date(), updatedAt: new Date()},
@@ -31,6 +38,6 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkDelete('Businesses', null, { truncate: true, cascade: true, restartIdentity: true });
+   return queryInterface.bulkDelete(options, null, { truncate: true, cascade: true, restartIdentity: true });
   }
 };
