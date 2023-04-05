@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
-// import { createBusiness } from '../../store/businesses';
+// import { createBusinessThunk } from '../../store/businesses';
 // import { Footer } from '../Footer';
 // import '../EditBusinessForm/EditBusiness.css'
 
@@ -46,7 +46,7 @@
 //             zipCode
 //         };
 
-//         let createdBusiness = await dispatch(createBusiness(payload))
+//         let createdBusiness = await dispatch(createBusinessThunk(payload))
 
 //         if (createdBusiness) {
 //             history.push(`/business/${createdBusiness.id}`);

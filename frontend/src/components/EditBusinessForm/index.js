@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { editBusinessDetails, getOneBusiness } from '../../store/businesses';
+import { editBusinessThunk, getOneBusinessThunk } from '../../store/businesses';
 import { Footer } from '../Footer';
 import './EditBusiness.css'
 
@@ -20,10 +20,9 @@ export const EditBusinessFrom = () => {
     const {businessId} = useParams();
 
     useEffect(() => {
-        dispatch(getOneBusiness(businessId))
+        dispatch(getOneBusinessThunk(businessId))
     }, [dispatch, businessId]);
 
-    const [ownerId, setOwnerId] = useState(userId);
     const [title, setTitle] = useState(currentBusiness.title);
     const [imgUrl, setImgUrl] = useState(currentBusiness.imgUrl);
     const [category, setCategory] = useState(currentBusiness.category);
@@ -47,7 +46,7 @@ export const EditBusinessFrom = () => {
 
         const payload = {
             id: businessId,
-            ownerId,
+            ownerId: userId,
             title,
             imgUrl,
             category,
@@ -58,8 +57,8 @@ export const EditBusinessFrom = () => {
             zipCode,
         };
 
-        let editedBusiness = await dispatch(editBusinessDetails(payload))
-        
+        let editedBusiness = await dispatch(editBusinessThunk(payload))
+
         if (editedBusiness) {
           history.push(`/businesses/${editedBusiness.id}`);
         }

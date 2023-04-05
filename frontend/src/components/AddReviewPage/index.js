@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { createReview } from '../../store/reviews';
+import { createReviewThunk } from '../../store/reviews';
 import { Footer } from '../Footer';
 import '../EditReview/EditReview.css';
-import { listOfAllBusinesses } from '../../store/businesses';
+import { getOneBusinessThunk } from '../../store/businesses';
 
 
 export const AddReviewPage = () => {
@@ -20,17 +20,15 @@ export const AddReviewPage = () => {
     const [rating, setRating] = useState('');
     const [content, setContent] = useState('');
 
-    const AllBusiness = useSelector(state => {
-        return state.businesses.list
-    });
+    const currentBusiness = useSelector(state => state.businesses.currentBusiness)
 
-    const currentBusiness = AllBusiness.find(business => {
-        return +businessId === business.id
-    })
+    // const currentBusiness = AllBusiness.find(business => {
+    //     return +businessId === business.id
+    // })
 
     useEffect(() => {
-        dispatch(listOfAllBusinesses())
-    }, [dispatch]);
+        dispatch(getOneBusinessThunk(businessId))
+    }, [dispatch, businessId]);
 
     const updateRating = (e) => setRating(e.target.value);
     const updateContent = (e) => setContent(e.target.value);
@@ -45,11 +43,15 @@ export const AddReviewPage = () => {
             content,
         };
 
-        dispatch(createReview(payload))
+        const response = await dispatch(createReviewThunk(payload))
 
-        history.push(`/businesses/${businessId}`);
+        if (response) {
+            history.push(`/businesses/${businessId}`);
+        }
       };
 
+      console.log('THIS IS CURRENT BUSINESS: ', currentBusiness)
+      if (!currentBusiness) return <div className="loading">Loading</div>
       return (
         <section className="form">
             <h2 className="review-business-title">{currentBusiness?.title}</h2>

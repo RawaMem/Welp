@@ -76,8 +76,8 @@ router.delete('/:reviewId(\\d+)', asyncHandler(async function(req, res) {
     const {reviewId} = req.body
     const review = await Review.findByPk(+reviewId)
     await review.destroy();
-    const allReviews = await Review.findAll();
-    return res.json(allReviews)
+    // const allReviews = await Review.findAll();
+    return res.json({message: 'review successfully deleted'})
 }));
 
 
