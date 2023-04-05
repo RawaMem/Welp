@@ -9,6 +9,14 @@ const { User, Business, Review } = require('../../db/models');
 const router = express.Router();
 
 
+
+router.get('/:businessId(\\d+)/reviews', asyncHandler(async function(req, res) {
+    const businessId = req.params.businessId
+    const reviews = await Review.findAll({
+        where: {businessId}
+    })
+    res.json(reviews)
+}))
 //get all businesses
 router.get('/', asyncHandler(async function(req, res) {
     const businesses = await Business.findAll();

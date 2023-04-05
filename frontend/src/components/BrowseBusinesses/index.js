@@ -1,7 +1,7 @@
 import { useEffect  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { listOfAllBusinesses } from '../../store/businesses';
+import { getAllBusinessesThunk } from '../../store/businesses';
 import { Footer } from '../Footer';
 import './BrowseBusiness.css'
 
@@ -10,13 +10,19 @@ import './BrowseBusiness.css'
 export const BrowseBusinesses = () => {
 
     const dispatch = useDispatch();
-    const listOfBusinesses = useSelector(state => {
-        return state.businesses.list
-    });
+
+    const user = useSelector(state => state.session.user)
+
+    const allBusinessesObj = useSelector(state => state.businesses.allBusinesses);
+    const allBusinessesArr = Object.values(allBusinessesObj)
+    // console.log('this is allBusinessesARR: ', allBusinessesArr)
 
     useEffect(() => {
-        dispatch(listOfAllBusinesses())
+        dispatch(getAllBusinessesThunk())
+
     }, [dispatch]);
+
+    if (!allBusinessesArr.length) return <div className="loading">Loading</div>
 
         return(
             <div className="browse-business-container">
@@ -44,28 +50,25 @@ export const BrowseBusinesses = () => {
 
                     </div>
                     <div className="new-businesses">
-                        {listOfBusinesses.map(business => {
+                        {allBusinessesArr.map(business => {
                             return (
-                                <>
-                                        <div className="business-card">
-                                            <Link className='b-link' to={`/businesses/${business.id}` }>
-                                                <img className="b-img" src={business.imgUrl} alt='business' />
-                                                <div className="b-title card-text" >{business.title}</div>
+                                        <div key={`all-businesses-1-${business.id}`} className="business-card">
+                                            <Link key={`all-businesses-2-${business.id}`} className='b-link' to={`/businesses/${business?.id}` }>
+                                                <img key={`all-businesses-3-${business.id}`} className="b-img" src={business.imgUrl} alt='business' />
+                                                <div key={`all-businesses-4-${business.id}`} className="b-title card-text" >{business.title}</div>
                                             </Link>
-                                            <div className="b-category card-text" >{business.category}</div>
-                                            <div className="b-location card-text" >{`${business.city}, ${business.state}`}</div>
+                                            <div key={`all-businesses-5-${business.id}`} className="b-category card-text" >{business.category}</div>
+                                            <div key={`all-businesses-6-${business.id}`} className="b-location card-text" >{`${business.city}, ${business.state}`}</div>
                                         </div>
-                                </>
-
                             )
                         })}
 
                     </div>
-                    <div className="add-business-btn-container">
+                    {user && user.id? (<div className="add-business-btn-container">
                         <Link to='/addbusinesses/new'>
                             <button className='add-business-btn'>Add A Business</button>
                             </Link>
-                    </div>
+                    </div>): <div className='noticeToLogIn' >Log in to Create a Business</div>}
                     <div className="recent-collections">
 
                     </div>

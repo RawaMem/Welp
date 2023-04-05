@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { listOfAllBusinesses } from '../../store/businesses';
-import { editReviewDetails } from '../../store/reviews';
+import { getOneBusinessThunk } from '../../store/businesses';
+import { editReviewThunk } from '../../store/reviews';
 import { Footer } from '../Footer';
 import './EditReview.css'
 
@@ -21,17 +21,12 @@ export const EditReview = () => {
     const [rating, setRating] = useState('');
     const [content, setContent] = useState('');
 
-    const AllBusiness = useSelector(state => {
-        return state.businesses.list
-    });
+    const currentBusiness = useSelector(state => state.businesses.currentBusiness);
 
-    const currentBusiness = AllBusiness.find(business => {
-        return +businessId === business.id
-    })
 
     useEffect(() => {
-        dispatch(listOfAllBusinesses())
-    }, [dispatch]);
+        dispatch(getOneBusinessThunk(businessId))
+    }, [dispatch, businessId]);
 
 
     const updateRating = (e) => setRating(e.target.value);
@@ -48,7 +43,7 @@ export const EditReview = () => {
             content,
         };
 
-        dispatch(editReviewDetails(payload))
+        dispatch(editReviewThunk(payload))
 
         history.push(`/businesses/${businessId}`);
 

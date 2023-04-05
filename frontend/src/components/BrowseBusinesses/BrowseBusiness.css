@@ -146,3 +146,8 @@
     background-color: rgb(218, 52, 52);
     border: 1px solid rgb(218, 52, 52);
 }
+
+.noticeToLogIn {
+    display: flex;
+    justify-content: center;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createBusiness } from '../../store/businesses';
+import { createBusinessThunk } from '../../store/businesses';
 import { Footer } from '../Footer';
 import '../EditBusinessForm/EditBusiness.css'
 
@@ -12,7 +12,6 @@ export const AddBusinessForm = () => {
       return state.session.user.id
     });
 
-    const [ownerId, setOwnerId] = useState(userId);
     const [title, setTitle] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [category, setCategory] = useState('');
@@ -35,7 +34,7 @@ export const AddBusinessForm = () => {
         e.preventDefault();
 
         const payload = {
-            ownerId,
+            ownerId: userId,
             title,
             imgUrl,
             category,
@@ -46,7 +45,7 @@ export const AddBusinessForm = () => {
             zipCode,
         };
 
-        let createdBusiness = await dispatch(createBusiness(payload))
+        let createdBusiness = await dispatch(createBusinessThunk(payload))
         if (createdBusiness) {
           history.push(`/businesses/${createdBusiness.id}`);
         }
