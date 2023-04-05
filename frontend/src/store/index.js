@@ -4,13 +4,15 @@ import sessionReducer from './session';
 import reviews from './reviews';
 import businessReducer from './businesses'
 
+console.log('before combine reducer in store/index.js')
+
 const rootReducer = combineReducers({
     session: sessionReducer,
     reviews,
     businesses: businessReducer
 
   });
-
+  console.log('after combine reducers in store/index.js')
 let enhancer;
 
 if (process.env.NODE_ENV === 'production') {
@@ -26,5 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 const configureStore = (preloadedState) => {
     return createStore(rootReducer, preloadedState, enhancer);
   };
+console.log('reached the end of store/index.js')
+
 
   export default configureStore;

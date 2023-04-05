@@ -8,10 +8,12 @@ const CLEAR_CURRENT_BUSINESS = `businesses/clearCurrentBusiness`
 const CLEAR_ALL_BUSINESSES = `businesses/clearAllBusiness`
 
 //rename
-const getAllBusinessesAction = businesses => ({
+const getAllBusinessesAction = businesses => {
+    console.log('getAllBusinessAction running, this is the passed in businesses: ', businesses)
+    return {
     type: GET_ALL_BUSINESSES,
-    businesses
-});
+    businesses}
+};
 
 const getOneBusinessAction = business => ({
     type: GET_ONE_BUSINESS,
@@ -44,10 +46,13 @@ export const clearAllBusinessAction = () => ({
 
 // listOfAllBusinesses
 export  const getAllBusinessesThunk = () => async dispatch => {
+    console.log('getAllBusinessesThunk running')
     const response = await csrfFetch(`/api/businesses`);
+    console.log('after getAllBusinessesThunk fetch, this is the response from the fetch: ', response)
 
     if (response.ok) {
         const businesses = await response.json();
+        console.log('if response.ok running in getAllBusinessesThunk, this is business after response.json(): ', businesses)
         dispatch(getAllBusinessesAction(businesses));
     }
 };
@@ -105,14 +110,17 @@ export const deleteBusinessThunk = (businessId) => async dispatch => {
 const initialState = {allBusinesses: {}, currentBusiness: {}};
 
 const businessReducer = (state = initialState, action) => {
+    console.log('businessReducer running, this is state: ', state)
     let newState;
 
     switch (action.type) {
         case GET_ALL_BUSINESSES: {
+            console.log('GET_ALL_BUSINESSES case running, this is action: ', action)
             newState = {...state, allBusinesses: {...state.allBusinesses}, currentBusiness: {...state.currentBusiness}}
             action.businesses.forEach(business => {
                 newState.allBusinesses[business.id] = business
             })
+            console.log('this is newState we are returning after making adjustments in the GET_ALL_BUSINESSES case in reducer: ', newState)
             return newState
         }
 

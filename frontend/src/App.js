@@ -13,14 +13,16 @@ import { AddReviewPage } from "./components/AddReviewPage";
 import { EditReview } from "./components/EditReview";
 
 function App() {
+  console.log('App component running')
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  console.log('app component is about to dispatch the restoreUser action, this will cause all the reducers to run so we shoul dsee the business reducer running as well')
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-//just make a different navbar composnent for each url if needed to keep it simple
-//if path === specific url, render nav bar one way, else render a different way
   return (
     <>
       <Navigation isLoaded={isLoaded} />

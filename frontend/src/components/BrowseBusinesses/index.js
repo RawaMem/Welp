@@ -8,24 +8,34 @@ import './BrowseBusiness.css'
 
 
 export const BrowseBusinesses = () => {
+    console.log('Browse Business conponent running')
 
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user)
 
-    const allBusinessesObj = useSelector(state => state.businesses.allBusinesses);
+    const allBusinessesObj = useSelector(state => {
+        console.log('allBusinessObj useSelector running, this is state: ', state)
+        return state.businesses.allBusinesses});
+
     const allBusinessesArr = Object.values(allBusinessesObj)
-    // console.log('this is allBusinessesARR: ', allBusinessesArr)
+    console.log('this is allBusinessesArr in Browse Businesses: ', allBusinessesArr)
 
     useEffect(() => {
+        console.log('Browse Businesses useEffect running')
         dispatch(getAllBusinessesThunk())
 
+        return () => {console.log('Browse Business useEffect return running')}
     }, [dispatch]);
 
-    if (!allBusinessesArr.length) return <div className="loading">Loading</div>
+    if (!allBusinessesArr.length) {
+        console.log('if !allBusinessArr.legnth is running, this should happen on initialy load because the component doesnt have data. to prevent an error, we have this guard clause')
+        return <div className="loading">Loading</div>
+    }
 
         return(
             <div className="browse-business-container">
+                {console.log('start of jsx running in the return')}
                 <div className="bb-img-container">
                     <img src="https://images.unsplash.com/photo-1485686531765-ba63b07845a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2900&q=80" alt="food" className="bb-img" />
                 </div>
@@ -77,6 +87,7 @@ export const BrowseBusinesses = () => {
                     </div>
                     <Footer />
                 </div>
+                {console.log('end of jsx running in the return')}
             </div>
         );
 }

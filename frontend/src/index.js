@@ -11,7 +11,9 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import configureStore from './store';
 import * as sessionActions from './store/session';
 
+console.log('root index.js running before configure store')
 const store = configureStore();
+console.log('root index.js running after configure store')
 
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
